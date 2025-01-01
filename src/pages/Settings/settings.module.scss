@@ -1,0 +1,147 @@
+button {
+	background: inherit;
+	border: none;
+	box-shadow: none;
+	border-radius: 0;
+	padding: 0;
+	overflow: visible;
+	cursor: pointer
+}
+
+.pTag {
+	font-family: "Pretendard";
+	font-size: 22px;
+	font-weight: 900;
+}
+
+.showCharacter {
+	font-family: "Pretendard";
+
+	position: relative;
+	width: clamp(430px, 100%, 100%);
+	height: 461.55px;
+}
+
+.pHeader {
+	position: absolute;
+	top: 37.55px;
+	left: 50%;
+	margin: 0;
+	transform: translateX(-50%);
+	font-size: 16px;
+	font-weight: 700;
+	line-height: normal;
+	letter-spacing: -0.32px;
+}
+
+.nextBtn {
+	position: absolute;
+	top: 32.55px;
+	right: 14px;
+	width: 53px;
+	height: 28px;
+	flex-shrink: 0;
+	border-radius: 12px;
+	background: #402C44;
+	color: #ffffff;
+}
+
+.pDescription {
+	position: absolute;
+	top: 94.55px;
+	left: 50%;
+	margin: 0;
+	transform: translateX(-50%);
+	color: #444;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: normal;
+	letter-spacing: -0.32px;
+}
+
+.characterFace {
+	position: absolute;
+	top: 158.55px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.characterBody {
+	position: absolute;
+	top: 260.08px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.resetBtn {
+	position: absolute;
+	bottom: 20px;
+	right: 20px;
+}
+
+.setCharacter {
+	width: clamp(430px, 100%, 100%);
+	background: #FFF;
+	font-family: "Pretendard";
+	box-shadow: 0px -4px 4px 0px rgba(41, 34, 41, 0.10);
+}
+
+.menuBar {
+	height: 49px;
+	display: flex;
+	justify-content: center;
+	background-color: #ffffff;
+}
+
+.menuItem {
+	all: unset;
+	width: 128px;
+	cursor: pointer;
+	font-size: 16px;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #5F5F5F;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	letter-spacing: -0.32px;
+
+	&.active {
+		color: #1B142A;
+		font-style: normal;
+		font-weight: 700;
+		line-height: normal;
+		letter-spacing: -0.32px;
+
+		&::after {
+			content: '';
+			position: absolute;
+			bottom: 1px;
+			left: 0;
+			width: 100%;
+			height: 3px;
+			border-radius: 100px;
+			background: #402C44;
+		}
+	}
+
+	&.inactive {
+		&::after {
+				content: '';
+				position: absolute;
+				bottom: 0px;
+				left: 0;
+				width: 100%;
+				height: 1px;
+				background: #E1E1E1;
+			}
+	}
+}
+
+.contentArea {
+	padding: 20px;
+	min-height: 200px;
+}
