@@ -34,7 +34,8 @@ const FriendsTab: React.FC = () => {
 
     const [hasNoFriend, setHasNoFriend] = useState<boolean>(false);
 
-    //const [isSortedByName, setIsSortedByName] = useState<boolean>(false); // true: 이름순 정렬, false: 최신순 정렬
+    const [isSortedByName, setIsSortedByName] = useState<boolean>(false); // true: 이름순 정렬, false: 최신순 정렬
+    const [isSelectSortPopupOpen, setIsSelectSortPopupOpen] = useState<boolean>(false);
     
     /* 검색 기능들
     const [searchQuery, setSearchQuery] = useState<string>("");
@@ -135,18 +136,28 @@ const FriendsTab: React.FC = () => {
                             }
                         </button>
                     </div>
-                    <div className={s.sortBySection}>
-                        
-                    </div>
                     {friendsData?.MyFriends ?
                         (
-                            <div className={s.myFriendsSection}>
-                                {isShowMyFriends && friendsData.MyFriends.map((friend) => (
-                                    <div key={friend.Id} className={s.myFriend}>
-                                        <ShowMyFriendsList otherUser={friend} />
+                            <>
+                                {isShowMyFriends &&
+                                    <div
+                                        className={s.sortByButton}
+                                        onClick={() => {
+                                            setIsSelectSortPopupOpen(!isSelectSortPopupOpen);
+                                            setIsSortedByName(!isSortedByName);
+                                        }}
+                                    >
+                                        {isSortedByName ? "이름순" : "최신순"}
                                     </div>
-                                ))}
-                            </div>
+                                }
+                                <div className={s.myFriendsSection}>
+                                    {isShowMyFriends && friendsData.MyFriends.map((friend) => (
+                                        <div key={friend.Id} className={s.myFriend}>
+                                            <ShowMyFriendsList otherUser={friend} />
+                                        </div>
+                                    ))}
+                                </div>
+                            </>
                         )
                     :
                         (<div className={s.myFriendsSection}></div>)
