@@ -136,6 +136,9 @@ const FriendsTab: React.FC = () => {
                             }
                         </button>
                     </div>
+                    <div className={s.sortBySection}>
+                        
+                    </div>
                     {friendsData?.MyFriends ?
                         (
                             <>
