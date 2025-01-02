@@ -1,0 +1,92 @@
+.container{
+    position: relative;
+    border: 1px solid #7e7e7e;
+    padding: 0;
+    margin: 0;
+    width: 320px;
+    height: 932px;
+}
+.title{
+    position: absolute;
+    width: 144px;
+    height: 19px;
+    left: 15px;
+    top: 67px;
+}
+.titleName{
+    font-family: "Pretendard";
+    font-size: 16px;
+    color: #1B142A;
+    font-weight: bold;
+}
+.titleWelcome{
+    font-family: "Pretendard";
+    font-size: 16px;
+    font-weight: bold;
+    color: #5F5F5F;
+}
+.searchBar{
+    position: absolute;
+    width: 290px;
+    height: 40px;
+    left: 15px;
+    top: 107px;
+    background-color: #C0B9DB;
+    border-radius: 20px;
+    margin: 0;
+    padding: 0;
+}
+.searchInput{
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    left: 20px;
+    top: 10px;
+    width: 230px;
+    line-height: 20px;
+    color: #FFFFFF;
+}
+.searchInput::placeholder{
+    color: #FFFFFF;
+    font-family: "Pretendard";
+    font-size: 13px;
+}
+.searchInput:focus{
+    outline: none;
+}
+.searchInput:focus::placeholder{
+    color: transparent;
+}
+
+.searchButton{
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    left: 259px;
+    top: 12px;
+    background-color: transparent;
+    border: none;
+}
+
+.friendsList{
+    position: absolute;
+    width: 290px;
+    height: 80%;
+    left: 15px;
+    top: 176px;
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    // overflow-y: auto;
+}
+
+.noFriend{
+    position: absolute;
+    left: 48px;
+    // top: 466px;
+    bottom: 230px;
+    font-family: "Pretendard";
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
