@@ -2,6 +2,7 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import s from "./app.module.scss";
+import FriendsTab from "./pages/Home/FriendsTab/FriendsTab";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -29,6 +30,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
       <p className={s.pTag}>Pretendard 적용 됐는지 글씨체 확인 바람</p>
+      <FriendsTab />
     </>
   );
 }

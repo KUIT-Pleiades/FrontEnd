@@ -80,6 +80,38 @@
     // overflow-y: auto;
 }
 
+.friendsList span{
+    font-family: "Pretendard";
+    font-size: 16px;
+    color: #444444;
+    font-weight: bold;
+}
+
+.friendRequestsHead, .myFriendsHead, .myRequestsHead{
+    width: 290px;
+    height: 19px;
+    margin-bottom: 23px;
+}
+
+.showHideButton{
+    position: absolute;
+    left: 276px;
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.friendRequests, .myFriends{
+    border-bottom: 1px solid #C0B9DB;
+    margin-bottom: 21px;
+}
+
+.friendRequestsSection, .myFriendsSection, .myRequestsSection{
+    width: 290px;
+    margin-bottom: 21px;
+}
+
 .noFriend{
     position: absolute;
     left: 48px;

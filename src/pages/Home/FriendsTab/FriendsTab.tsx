@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Character } from '../../../interfaces/Interfaces';
 import s from './FriendsTab.module.scss';
-import ShowFriendList from './ShowFriendList/ShowFriendList';
+
+import ShowFriendRequestsList from './ShowFriendRequestsList/ShowFriendRequestsList';
+import ShowMyFriendsList from './ShowMyFriendsList/ShowMyFriendsList';
+import ShowMyRequestsList from './ShowMyRequestsList/ShowMyRequestsList';
+
+import searchIcon from '../../../assets/searchIcon.svg';
+import hideUpArrow from '../../../assets/hideUpArrow.svg';
+import showDownArrow from '../../../assets/showDownArrow.svg';
+import pleiadesLogo from '../../../assets/pleiadesLogo.png';
 
 
 interface Friend {
@@ -25,6 +33,8 @@ const FriendsTab: React.FC = () => {
     const [isShowMyRequests, setIsShowMyRequests] = useState<boolean>(true);
 
     const [hasNoFriend, setHasNoFriend] = useState<boolean>(false);
+
+    //const [isSortedByName, setIsSortedByName] = useState<boolean>(false); // true: 이름순 정렬, false: 최신순 정렬
     
     /* 검색 기능들
     const [searchQuery, setSearchQuery] = useState<string>("");
@@ -81,7 +91,7 @@ const FriendsTab: React.FC = () => {
                     // onClick={handleSearchSubmit}
                     type="submit"
                 >
-                    <img src='./svgs/searchIcon.svg' alt="searchIcon" />
+                    <img src={searchIcon} alt="searchIcon" />
                 </button>
             </div>
         
@@ -93,9 +103,9 @@ const FriendsTab: React.FC = () => {
                         <span>친구 요청 왔어요 ({friendsData?.FriendRequests.length})</span>
                         <button className={s.showHideButton} onClick={() => setIsShowFriendRequests(!isShowFriendRequests)}>
                             {isShowFriendRequests ? 
-                                <img src='./svgs/hideUpArrow.svg' alt="hideUpArrow" />
+                                <img src={hideUpArrow} alt="hideUpArrow" />
                             :
-                                <img src='./svgs/showDownArrow.svg' alt="showDown" />
+                                <img src={showDownArrow} alt="showDown" />
                             }
                         </button>
                     </div>
@@ -104,7 +114,7 @@ const FriendsTab: React.FC = () => {
                             <div className={s.friendRequestsSection}>
                                 {isShowFriendRequests && friendsData.FriendRequests.map((friend) => (
                                     <div key={friend.Id} className={s.friendRequest}>
-                                        <ShowFriendList otherUser={friend} />
+                                        <ShowFriendRequestsList otherUser={friend} />
                                     </div>
                                 ))}
                             </div>
@@ -116,21 +126,24 @@ const FriendsTab: React.FC = () => {
                 {/*============= 내 친구 리스트 =============*/}
                 <div className={s.myFriends}>
                     <div className={s.myFriendsHead}>
-                        <span>전체 ({friendsData?.MyFriends.length})</span>
+                        <span>내 친구 ({friendsData?.MyFriends.length})</span>
                         <button className={s.showHideButton} onClick={() => setIsShowMyFriends(!isShowMyFriends)}>
                             {isShowMyFriends ? 
-                                <img src='./svgs/hideUpArrow.svg' alt="hideUpArrow" />
+                                <img src={hideUpArrow} alt="hideUpArrow" />
                             :
-                                <img src='./svgs/showDownArrow.svg' alt="showDown" />
+                                <img src={showDownArrow} alt="showDown" />
                             }
                         </button>
+                    </div>
+                    <div className={s.sortBySection}>
+                        
                     </div>
                     {friendsData?.MyFriends ?
                         (
                             <div className={s.myFriendsSection}>
                                 {isShowMyFriends && friendsData.MyFriends.map((friend) => (
                                     <div key={friend.Id} className={s.myFriend}>
-                                        <ShowFriendList otherUser={friend} />
+                                        <ShowMyFriendsList otherUser={friend} />
                                     </div>
                                 ))}
                             </div>
@@ -145,9 +158,9 @@ const FriendsTab: React.FC = () => {
                         <span>요청 중인 친구 ({friendsData?.MyRequests.length})</span>
                         <button className={s.showHideButton} onClick={() => setIsShowMyRequests(!isShowMyRequests)}>
                             {isShowMyRequests ? 
-                                <img src='./svgs/hideUpArrow.svg' alt="hideUpArrow" />
+                                <img src={hideUpArrow} alt="hideUpArrow" />
                             :
-                                <img src='./svgs/showDownArrow.svg' alt="showDown" />
+                                <img src={showDownArrow} alt="showDown" />
                             }
                         </button>
                     </div>
@@ -156,7 +169,7 @@ const FriendsTab: React.FC = () => {
                             <div className={s.myRequestsSection}>
                                 {isShowMyRequests && friendsData.MyRequests.map((friend) => (
                                     <div key={friend.Id} className={s.myRequest}>
-                                        <ShowFriendList otherUser={friend} />
+                                        <ShowMyRequestsList otherUser={friend} />
                                     </div>
                                 ))}
                             </div>
@@ -168,11 +181,11 @@ const FriendsTab: React.FC = () => {
             </div>
 
             {/*================================ 친구가 없을 때 ================================*/}
-            {!hasNoFriend &&
+            {hasNoFriend &&
                 <div className={s.noFriend}>
                     <p>아직 친구가 없어요...</p>
                     <p>ID를 검색해 친구를 추가해 보세요!</p>
-                    <img src='./svgs/pleiadesLogo.svg' alt="pleiadesLogo" />
+                    <img src={pleiadesLogo} alt="pleiadesLogo" />
                 </div>
             }
             
