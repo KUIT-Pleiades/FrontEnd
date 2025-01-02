@@ -1,0 +1,134 @@
+.splashContainer {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  background-color: #1b142b;
+  overflow: hidden;
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.motionSection {
+  height: 200px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes jumping {
+  from {
+    margin-bottom: 60px;
+  }
+  to {
+    margin-top: 10px;
+  }
+}
+
+.logo {
+  animation-name: jumping;
+  animation-duration: 1.7s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  z-index: 1;
+}
+
+.subTitle {
+  font-family: "NanumSquareRound";
+  font-size: 15px;
+  text-align: center;
+  letter-spacing: -2%;
+  margin-top: 0%;
+  margin-bottom: 3%;
+  color: #ffffff;
+  z-index: 1;
+}
+
+.title {
+  font-family: "ElectricalSafety";
+  font-size: 36px;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 15%;
+  color: #e4d0e5;
+  z-index: 1;
+}
+
+@keyframes fade1 {
+  from {
+    opacity: 100%;
+  }
+  to {
+    opacity: 50%;
+  }
+}
+
+@keyframes fade2 {
+  from {
+    opacity: 15%;
+  }
+  to {
+    opacity: 6%;
+  }
+}
+
+.backGround1 {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 0;
+  animation-name: fade1;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  width: 100vw;
+  height: 100vw;
+}
+
+.backGround2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  animation-name: fade1;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  width: 100vw;
+  height: 100vw;
+}
+
+.backGround3 {
+  position: absolute;
+  top: -48px;
+  right: 15%;
+  background: radial-gradient(#bbc4e1, #1b142b);
+  width: 96px;
+  height: 96px;
+  border-radius: 100px;
+  animation-name: fade2;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.backGround4 {
+  position: absolute;
+  top: 60%;
+  left: -48px;
+  background: radial-gradient(#bbc4e1, #1b142b);
+  width: 128px;
+  height: 128px;
+  border-radius: 100px;
+  animation-name: fade2;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
