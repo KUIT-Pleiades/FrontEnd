@@ -1,11 +1,11 @@
 {
-  "friendRequest": [
+  "FriendRequests": [
     {
       "Id": "friend12",
       "Name": "길봉태"
     }
   ],
-  "Myfriends": [
+  "MyFriends": [
     {
       "Id": "friend1",
       "Name": "홍길동"

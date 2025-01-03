@@ -1,0 +1,70 @@
+.container{
+    position: relative;
+    margin-bottom: 18px;
+    width: 290px;
+    height: 33px;
+}
+
+.profileImage{
+    position: absolute;
+    width: 33px;
+    height: 33px;
+    left: 0;
+    top: 0;
+    border-radius: 100%;
+    overflow: hidden;
+    background-color: #E4D0E5;
+}
+
+.nameId{
+    position: absolute;
+    left: 41px;
+    width: 66px;
+    height: 33px;
+}
+.nameId p{
+    margin: 0;
+    padding: 0;
+}
+.nameId p:nth-child(1){
+    font-family: "Pretendard";
+    font-size: 15px;
+    color: #444444;
+    font-weight: bold;
+    margin-bottom: 2px;
+    height: 18px;
+}
+.nameId p:nth-child(2){
+    font-family: "Pretendard";
+    font-size: 11px;
+    color: #444444;
+    height: 13px
+}
+
+.buttonContainer{
+    width: 113px;
+    height: 28px;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    right: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.acceptButton, .declineButton{
+    width: 53px;
+    height: 28px;
+    border: none;
+    color: #FFFFFF;
+    border-radius: 12px;
+    font-family: "Pretendard";
+    font-size: 14px;
+    font-weight: bold;
+}
+.acceptButton{
+    background-color: #402C44;
+}
+.declineButton{
+    background-color: #C0B9DB;
+}
