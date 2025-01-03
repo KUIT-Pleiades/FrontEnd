@@ -5,13 +5,14 @@ import s from './FriendsTab.module.scss';
 import ShowFriendRequestsList from './ShowFriendRequestsList/ShowFriendRequestsList';
 import ShowMyFriendsList from './ShowMyFriendsList/ShowMyFriendsList';
 import ShowMyRequestsList from './ShowMyRequestsList/ShowMyRequestsList';
+//import VisitStationModal from './VisitStationModal/visitStationModal';
 
 import searchIcon from '../../../assets/searchIcon.svg';
 import hideUpArrow from '../../../assets/hideUpArrow.svg';
 import showDownArrow from '../../../assets/showDownArrow.svg';
 import pleiadesLogo from '../../../assets/pleiadesLogo.png';
-import sortShowDown from '../../../assets/sortShowDown.svg'
-import sortHideUp from '../../../assets/sortHideUp.svg'
+import sortShowDown from '../../../assets/sortShowDown.svg';
+import sortHideUp from '../../../assets/sortHideUp.svg';
 
 interface Friend {
     Id: string;
@@ -37,6 +38,17 @@ const FriendsTab: React.FC = () => {
 
     const [sortCriteria, setSortCriteria] = useState<"최신순" | "이름순">("최신순"); // true: 이름순 정렬, false: 최신순 정렬
     const [isSelectSortPopupOpen, setIsSelectSortPopupOpen] = useState<boolean>(false);
+
+    // const [isModalOpen, setIsModalOpen] = useState(false);
+
+    // const handleOpenModal = () => {setIsModalOpen(true)};
+    // const handleCloseModal = () => setIsModalOpen(false);
+    // const handleConfirm = () => {
+    //     handleCloseModal();
+    // };
+    // const handleCancel = () => {
+    //     handleCloseModal();
+    // };  
     
     /* 검색 기능들
     const [searchQuery, setSearchQuery] = useState<string>("");
@@ -176,6 +188,15 @@ const FriendsTab: React.FC = () => {
                                             )
                                         )
                                 }
+                                {/* {isModalOpen && (
+                                    <VisitStationModal
+                                        username={character.characterName}
+                                        userId={character.characterId}
+                                        onConfirm={handleConfirm}
+                                        onCancel={handleCancel}
+                                        onClose={handleCloseModal}
+                                    />
+                                )} */}
                                 <div className={s.myFriendsSection}>
                                 {isShowMyFriends && <div style={{height:"10px"}}></div>}
                                     {isShowMyFriends && friendsData.MyFriends.map((friend) => (
