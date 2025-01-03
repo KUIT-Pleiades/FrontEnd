@@ -5,7 +5,7 @@ import { OtherUser } from '../../../../interfaces/Interfaces';
 import profileImageSmall from '../../../../assets/profileImageSmall.png';
 import goStationSmall from '../../../../assets/goStationSmall.svg';
 import poke from '../../../../assets/poke.svg';
-import VisitStationModal from '../VisitStationModal/visitStationModal';
+import VisitStationModal from '../VisitStationModal/VisitStationModal';
 
 interface ShowMyFriendsListProps {
     otherUser: OtherUser;
