@@ -1,20 +1,21 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import s from "./app.module.scss";
-import Settings from "./pages/Settings/Settings";
+// import { useState } from "react";
+// import reactLogo from "./assets/react.svg";
+// import viteLogo from "/vite.svg";
+// import s from "./app.module.scss";
+// import Settings from "./pages/Settings/Settings";
+import FriendsTab from "./pages/Home/FriendsTab/FriendsTab";
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [showMain, setShowMain] = useState(true);
+  // const [count, setCount] = useState(0);
+  // const [showMain, setShowMain] = useState(true);
 
-  const handleClick = () => {
-    setShowMain(false);
-  };
+  // const handleClick = () => {
+  //   setShowMain(false);
+  // };
 
   return (
     <>
-      {showMain ? (
+      {/* {showMain ? (
         <>
           <div>
             <a href="https://vite.dev" target="_blank">
@@ -41,7 +42,8 @@ function App() {
         </>
       ) : (
         <Settings />
-      )}
+      )} */}
+      <FriendsTab />
     </>
   );
 }

@@ -10,7 +10,8 @@ import searchIcon from '../../../assets/searchIcon.svg';
 import hideUpArrow from '../../../assets/hideUpArrow.svg';
 import showDownArrow from '../../../assets/showDownArrow.svg';
 import pleiadesLogo from '../../../assets/pleiadesLogo.png';
-
+import sortShowDown from '../../../assets/sortShowDown.svg'
+import sortHideUp from '../../../assets/sortHideUp.svg'
 
 interface Friend {
     Id: string;
@@ -34,7 +35,7 @@ const FriendsTab: React.FC = () => {
 
     const [hasNoFriend, setHasNoFriend] = useState<boolean>(false);
 
-    const [isSortedByName, setIsSortedByName] = useState<boolean>(false); // true: 이름순 정렬, false: 최신순 정렬
+    const [sortCriteria, setSortCriteria] = useState<"최신순" | "이름순">("최신순"); // true: 이름순 정렬, false: 최신순 정렬
     const [isSelectSortPopupOpen, setIsSelectSortPopupOpen] = useState<boolean>(false);
     
     /* 검색 기능들
@@ -77,7 +78,6 @@ const FriendsTab: React.FC = () => {
                 <span className={s.titleName}>{character?.characterName}</span>
                 <span className={s.titleWelcome}>님 어서오세요!</span>
             </div>
-
             {/*================================ 검색창 부분 ================================*/}
             <div className={s.searchBar}>
                 <input
@@ -95,7 +95,6 @@ const FriendsTab: React.FC = () => {
                     <img src={searchIcon} alt="searchIcon" />
                 </button>
             </div>
-        
             {/*================================ 친구 목록 부분 ================================*/}
             <div className={s.friendsList}>
                 {/*============= 받은 친구 요청 리스트 =============*/}
@@ -143,15 +142,24 @@ const FriendsTab: React.FC = () => {
                         (
                             <>
                                 {isShowMyFriends &&
-                                    <div
-                                        className={s.sortByButton}
-                                        onClick={() => {
-                                            setIsSelectSortPopupOpen(!isSelectSortPopupOpen);
-                                            setIsSortedByName(!isSortedByName);
-                                        }}
-                                    >
-                                        {isSortedByName ? "이름순" : "최신순"}
-                                    </div>
+                                        (isSelectSortPopupOpen ?
+                                            (
+                                                <div onClick={() => setIsSelectSortPopupOpen(false)}>
+                                                    <div>
+                                                        <button onClick={() => setSortCriteria("최신순")}>최신순</button>
+                                                        <button onClick={() => setSortCriteria("이름순")}>이름순</button>
+                                                    </div>
+                                                    <img src={sortHideUp} alt='sortHideUp' />
+                                                </div>
+                                            )
+                                            :
+                                            (
+                                                <div onClick={() => setIsSelectSortPopupOpen(true)}>
+                                                    {sortCriteria} 
+                                                    <img src={sortShowDown} alt='sortShowDown' />
+                                                </div>
+                                            )
+                                        )
                                 }
                                 <div className={s.myFriendsSection}>
                                     {isShowMyFriends && friendsData.MyFriends.map((friend) => (
