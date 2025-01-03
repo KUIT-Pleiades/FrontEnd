@@ -1,141 +1,225 @@
 button {
-	background: inherit;
-	border: none;
-	box-shadow: none;
-	border-radius: 0;
-	padding: 0;
-	overflow: visible;
-	cursor: pointer
+    background: inherit;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    overflow: visible;
+    cursor: pointer
 }
 
 .showCharacter {
-	font-family: "Pretendard";
+    font-family: "Pretendard";
 
-	position: relative;
-	width: clamp(430px, 100%, 100%);
-	height: 461.55px;
+    position: relative;
+    width: clamp(430px, 100%, 100%);
+    height: 461.55px;
 }
 
 .pHeader {
-	position: absolute;
-	top: 37.55px;
-	left: 50%;
-	margin: 0;
-	transform: translateX(-50%);
-	font-size: 16px;
-	font-weight: 700;
-	line-height: normal;
-	letter-spacing: -0.32px;
+    position: absolute;
+    top: 37.55px;
+    left: 50%;
+    margin: 0;
+    transform: translateX(-50%);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.32px;
+    z-index: 2;
 }
 
 .nextBtn {
-	position: absolute;
-	top: 32.55px;
-	right: 14px;
-	width: 53px;
-	height: 28px;
-	flex-shrink: 0;
-	border-radius: 12px;
-	background: #402C44;
-	color: #ffffff;
+    position: absolute;
+    top: 32.55px;
+    right: 14px;
+    width: 53px;
+    height: 28px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background: #402C44;
+    color: #ffffff;
 }
 
 .pDescription {
-	position: absolute;
-	top: 94.55px;
-	left: 50%;
-	margin: 0;
-	transform: translateX(-50%);
-	color: #444;
-	font-size: 16px;
-	font-style: normal;
-	font-weight: 600;
-	line-height: normal;
-	letter-spacing: -0.32px;
+    position: absolute;
+    top: 94.55px;
+    left: 50%;
+    margin: 0;
+    transform: translateX(-50%);
+    color: #444;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: -0.32px;
+    z-index: 2;
 }
 
 .characterFace {
-	position: absolute;
-	top: 158.55px;
-	left: 50%;
-	transform: translateX(-50%);
+    position: absolute;
+    top: 158.55px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 155px;
+    height: 180.677px;
+    flex-shrink: 0;
+    z-index: 2;
 }
 
 .characterBody {
-	position: absolute;
-	top: 260.08px;
-	left: 50%;
-	transform: translateX(-50%);
+    position: absolute;
+    top: 260.08px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 113.065px;
+    height: 126.638px;
+    flex-shrink: 0;
+    z-index: 2;
+}
+
+.characterAccessory {
+    position: absolute;
+    top: 157.55px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 46.383px;
+    flex-shrink: 0;
+    z-index: 2;
+}
+
+.characterBackground {
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+    z-index: 1;
 }
 
 .resetBtn {
-	position: absolute;
-	bottom: 20px;
-	right: 20px;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+    z-index: 2;
 }
 
 .setCharacter {
-	width: clamp(430px, 100%, 100%);
-	background: #FFF;
-	font-family: "Pretendard";
-	box-shadow: 0px -4px 4px 0px rgba(41, 34, 41, 0.10);
+    width: clamp(430px, 100%, 100%);
+    background: #FFF;
+    font-family: "Pretendard";
+    box-shadow: 0px -4px 4px 0px rgba(41, 34, 41, 0.10);
 }
 
 .menuBar {
-	height: 49px;
-	display: flex;
-	justify-content: center;
-	background-color: #ffffff;
+    height: 49px;
+    display: flex;
+    justify-content: center;
+    background-color: #ffffff;
 }
 
 .menuItem {
-	all: unset;
-	width: 128px;
-	cursor: pointer;
-	font-size: 16px;
-	position: relative;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	color: #5F5F5F;
-	font-style: normal;
-	font-weight: 400;
-	line-height: normal;
-	letter-spacing: -0.32px;
+    all: unset;
+    width: 100%;
+    cursor: pointer;
+    font-size: 16px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #5F5F5F;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.32px;
 
-	&.active {
-		color: #1B142A;
-		font-style: normal;
-		font-weight: 700;
-		line-height: normal;
-		letter-spacing: -0.32px;
+    &.active {
+        color: #1B142A;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        letter-spacing: -0.32px;
 
-		&::after {
-			content: '';
-			position: absolute;
-			bottom: 1px;
-			left: 0;
-			width: 100%;
-			height: 3px;
-			border-radius: 100px;
-			background: #402C44;
-		}
-	}
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            border-radius: 100px;
+            background: #402C44;
+        }
+    }
 
-	&.inactive {
-		&::after {
-				content: '';
-				position: absolute;
-				bottom: 0px;
-				left: 0;
-				width: 100%;
-				height: 1px;
-				background: #E1E1E1;
-			}
-	}
+    &.inactive {
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: #E1E1E1;
+        }
+    }
 }
 
 .contentArea {
-	padding: 20px;
-	min-height: 200px;
+    padding: 14px;
+    min-height: 200px;
+    background: #FFF;
+}
+
+
+.gridItems {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
+    gap: 22px;
+    padding: 14px 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.item {
+    aspect-ratio: 1;
+    border-radius: 12px;
+    background: white;
+    cursor: pointer;
+    border: 1px solid #E1E1E1;
+    padding: 8px;
+
+    &:hover {
+        border-color: #ccc;
+        
+    }
+
+    &.selected {
+        box-shadow: 0 0 8px 2px rgba(139, 92, 246, 0.5);
+        
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+}
+
+.lockedItem {
+    aspect-ratio: 1;
+    border-radius: 12px;
+    background: white;
+    position: relative;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
 }
