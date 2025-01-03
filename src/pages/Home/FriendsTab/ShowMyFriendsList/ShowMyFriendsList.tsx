@@ -3,6 +3,8 @@ import s from './ShowMyFriendsList.module.scss';
 import { OtherUser } from '../../../../interfaces/Interfaces';
 
 import profileImageSmall from '../../../../assets/profileImageSmall.png';
+import goStationSmall from '../../../../assets/goStationSmall.svg';
+import poke from '../../../../assets/poke.svg';
 
 interface ShowMyFriendsListProps {
     otherUser: OtherUser;
@@ -19,8 +21,12 @@ const ShowMyFriendsList: React.FC<ShowMyFriendsListProps> = ({ otherUser }) => {
         <p>@{otherUser.Id}</p>
       </div>
       <div className={s.buttonContainer}>
-        <button className={s.acceptButton}>수락</button>
-        <button className={s.declineButton}>거절</button>
+        <button className={s.goStationButton}>
+          <img src={goStationSmall} alt="goStationSmall" />
+        </button>
+        <button className={s.pokeButton}>
+          <img src={poke} alt="poke" />
+        </button>
       </div>
     </div>
   )

@@ -19,8 +19,7 @@ const ShowMyRequestsList: React.FC<ShowMyRequestsListProps> = ({ otherUser }) =>
         <p>@{otherUser.Id}</p>
       </div>
       <div className={s.buttonContainer}>
-        <button className={s.acceptButton}>수락</button>
-        <button className={s.declineButton}>거절</button>
+        <button className={s.cancelButton}>취소</button>
       </div>
     </div>
   )
