@@ -1,0 +1,142 @@
+.container{
+    position: relative;
+    border: none;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #F8F8FA;
+}
+.headContainer{
+    width: 100%;
+    height: 9%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 0;
+    margin: 0;
+    padding-bottom: 18px;
+    background-color: #FFFFFF;
+}
+.title{
+    padding: 0;
+    margin: 0;
+}
+.titleName, .titleWelcome{
+    font-family: "Pretendard";
+    font-size: 16px;
+    color: #1B142A;
+    font-weight: bold;
+}
+
+.friendsList{
+    width: 100%;
+    height: auto;
+    max-height: 78%;
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    margin-top: 15px;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    overflow-y: scroll;
+}
+// .friendsList::-webkit-scrollbar-thumb{
+//     background: #C0B9DB;
+// }
+
+.friendsList span{
+    font-family: "Pretendard";
+    font-size: 16px;
+    color: #444444;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.friendRequests, .myFriends, .myRequests{
+    width: 92%;
+    height: auto;
+}
+
+.friendRequestsHead, .myFriendsHead, .myRequestsHead{
+    //width: 290px;
+    width: 100%;
+    height: 19px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    border-bottom: 1px solid #C0B9DB;
+    padding-bottom: 8px;
+}
+
+.showHideButton{
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.friendRequestsSection, .myFriendsSection, .myRequestsSection{
+    width: 100%;
+    height: auto;
+    margin-bottom: 21px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    //border: 1px solid black;
+    gap: 10px;
+}
+.friendRequestsSection div:first-child{
+    margin-top: 5px;
+}
+.myRequestsSection div:first-child{
+    margin-top: 5px;
+}
+.myFriendsSection div:first-child{
+    margin-top: 3px;
+}
+
+.friendRequest, .myFriend, .myRequest{
+    //border: 1px solid gray;
+    width: 100%;
+    height: 43px;
+}
+
+.sortCriteriaBoxContainer{
+    //border: 1px solid black;
+    width: 100%;
+    height: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.noFriend{
+    font-family: "Pretendard";
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.noFriendFirstText{
+    font-family: "Pretendard";
+    font-weight: 500;
+    font-size: 16px;
+    color: #1B142A;
+}
+.noFriendSecondText{
+    font-family: "Pretendard";
+    font-weight: 400;
+    font-size: 13px;
+    color: #444444;
+}
+

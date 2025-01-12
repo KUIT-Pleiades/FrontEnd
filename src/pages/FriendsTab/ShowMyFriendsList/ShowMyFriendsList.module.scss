@@ -1,0 +1,151 @@
+.container{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.userInfoContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.profileImage{
+    border-radius: 100%;
+    overflow: hidden;
+    background-color: #E4D0E5;
+    width: 34px;
+    height: 34px;
+}
+
+.nameId{
+    margin-left: 8px;
+}
+.nameId p{
+    margin: 0;
+    padding: 0;
+}
+.nameId p:nth-child(1){
+    font-family: "Pretendard";
+    font-size: 15px;
+    color: #444444;
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+.nameId p:nth-child(2){
+    font-family: "Pretendard";
+    font-size: 11px;
+    color: #444444;
+}
+
+.buttonContainer{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.goStationButton, .pokeButton{
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 100%;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+    margin-left: 11px;
+}
+.onPokeButton{
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 100%;
+    background-color: #E4D0E5;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+    margin-left: 11px;
+}
+
+.deleteFriendsButton{
+    margin: 0;
+    padding: 0;
+    width: 10px;
+    border: none;
+    background-color: transparent;
+    margin-left: 11px;
+}
+.showDeleteFriendModalButton{
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: #FFFFFF;
+    color: #8B6193;
+    border-radius: 12px;
+    width: 78px;
+    height: 28px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+    font-family: "Pretendard";
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.pokePopup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #ffffff;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    padding: 0;
+    width: 70%;
+    height: 50px;
+    font-family: "ElectricalSafety";
+    font-weight: 400;
+    font-size: 15px;
+    color: #1B142A;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeInOut 1.5s ease-in-out;
+  
+    @keyframes fadeInOut {
+        0% {
+            opacity: 0;
+            transform: translate(-50%, -60%);
+        }
+        10% {
+            opacity: 1;
+            transform: translate(-50%, -50%);
+        }
+        90% {
+            opacity: 1;
+            transform: translate(-50%, -50%);
+        }
+        100% {
+            opacity: 0;
+            transform: translate(-50%, -40%);
+        }
+    }
+}
+.pokePopupStarsUp {
+    position: fixed;
+    top: -50%; /* 팝업 상단에서 약간 위로 배치 */
+    left: 2%; /* 팝업 왼쪽에서 약간 왼쪽으로 배치 */
+    width: 20px; /* 별 이미지 크기 */
+    height: 20px; /* 별 이미지 크기 */
+    z-index: 1001; /* 팝업 위에 표시되도록 z-index 설정 */
+  }
+  .pokePopupStarsDown {
+    position: fixed;
+    bottom: -50%; /* 팝업 상단에서 약간 위로 배치 */
+    right: 2%; /* 팝업 왼쪽에서 약간 왼쪽으로 배치 */
+    width: 20px; /* 별 이미지 크기 */
+    height: 20px; /* 별 이미지 크기 */
+    z-index: 1001; /* 팝업 위에 표시되도록 z-index 설정 */
+  }
