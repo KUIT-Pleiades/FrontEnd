@@ -7,7 +7,6 @@ import DeleteFriendModal from "../../../components/DeleteFriendModal/DeleteFrien
 import SignalButton from "../../../components/SignalButton/SignalButton";
 
 //image files
-//import profileImageSmall from '../../../assets/FriendsTab/profileImageSmall.png';
 import deleteFriendsButton from "../../../assets/FriendsTab/deleteFriendsButton.svg";
 import { useNavigate } from "react-router-dom";
 

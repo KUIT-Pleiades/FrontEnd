@@ -1,160 +1,128 @@
-import React, { useEffect, useState } from 'react';
+// SearchUsers.tsx
+import React, { useState } from 'react';
 import s from './SearchUsers.module.scss';
 import { useNavigate } from 'react-router-dom';
-// import pleiadesAllUsers from '../../mock/pleiadesUsers.json';
-// import friendsExampleData from '../../mock/socialInfo.json';
-
+import { useQuery } from '@tanstack/react-query';
+import axiosInstance from '../../api/axiosInstance'; // axiosInstance import
 // components
 import SearchUsersBar from '../../components/SearchUsersBar/SearchUsersBar';
-import { fetchRequest } from '../../functions/fetchRequest';
 import RecentSearch from './RecentSearch/RecentSearch';
 import SearchResults from './SearchResults/SearchResults';
 import Pending from '../PageManagement/Pending';
+import { RecentSearchedUser, SocialUser } from '../../interfaces/Interfaces';
 
-interface User {
-    userId: string;
-    userName: string;
-    profile: string;
-    status: "FRIEND" | "RECEIVED" | "SENT" | "JUSTHUMAN";
-}
-interface RecentSearchedUser {
-    userId: string;
-    userName: string;
-    profile: string;
-}
+// API 호출 함수들
+const fetchSearchResults = async (query: string) => {
+  const response = await axiosInstance.get<{ users: SocialUser[] }>(`/users?user_id=${query}`);
+  return response.data;
+};
+
+const fetchRecentSearches = async () => {
+  const response = await axiosInstance.get<{ users: RecentSearchedUser[] }>("/users/histories");
+  return response.data;
+};
 
 const SearchUsers: React.FC = () => {
-    const navigate = useNavigate();
-    const [searchValue, setSearchValue] = useState('');
-    const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
-    const [showNoResultMessage, setShowNoResultMessage] = useState(false);
-    const [recentSearches, setRecentSearches] = useState<RecentSearchedUser[]>([]);
-    const [recentSearchloading, setRecentSearchLoading] = useState<boolean>(true);
-    const [showRecentSearches, setShowRecentSearches] = useState(true);
-    const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const [searchValue, setSearchValue] = useState('');
+  const [showRecentSearches, setShowRecentSearches] = useState(true);
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const value = event.target.value;
-        setSearchValue(value);
+  // 검색 결과용 useQuery (수동 실행)
+  const {
+    data: searchData,
+    refetch: refetchSearch,
+    isLoading: searchLoading,
+  } = useQuery<{ users: SocialUser[] }>({
+    queryKey: ['searchUsers', searchValue],
+    queryFn: () => fetchSearchResults(searchValue),
+    enabled: false
+  });
 
-        if(value === ''){
-            setFilteredUsers([]);
-            setShowRecentSearches(true);
-            setShowNoResultMessage(false);
-        }
-    };
-    
-    const handleSearchSubmit = async (value?: string) => {
-        const searchQuery = value || searchValue.trim();
-        if (!searchQuery) return;
-    
-        setLoading(true);
-        setShowRecentSearches(false);
-        setShowNoResultMessage(false);
-    
-        try {
-            // ❌ 잘못된 타입 추론 (response가 배열이 아님)
-            // const response = await fetchRequest<User[]>("/users?user_id=" + searchQuery, "GET", null);
-            
-            // ✅ 올바른 타입 적용 (response.users에 접근)
-            const response = await fetchRequest<{ users: User[] }>(
-                `/users?user_id=${searchQuery}`,
-                "GET",
-                null
-            );
-    
-            console.log('검색 요청 완료. 검색어: ', searchQuery);
-            console.log('response: ', response);
-    
-            setLoading(false);
-    
-            if (response && Array.isArray(response.users) && response.users.length > 0) {
-                setFilteredUsers(response.users);
-            } else {
-                console.log('검색 결과 0명..');
-                setFilteredUsers([]);
-                setShowNoResultMessage(true);
-            }
-        } catch (error) {
-            console.error("검색 요청 실패:", error);
-            setLoading(false);
-            setFilteredUsers([]);
-            setShowNoResultMessage(true);
-        }
-    };
+  // 최근 검색 기록용 useQuery (showRecentSearches가 true일 때 실행)
+  const {
+    data: recentData,
+    isLoading: recentLoading,
+    refetch: refetchRecent,
+  } = useQuery<{ users: RecentSearchedUser[] }>({
+    queryKey: ['recentSearches'],
+    queryFn: fetchRecentSearches,
+    enabled: showRecentSearches
+  });
 
-    const getRecentSearches = async () => {
-        setRecentSearchLoading(true);
-        const response = await fetchRequest<{ users: RecentSearchedUser[] }>(
-            "/users/histories",
-            "GET",
-            null
-        );
-        if (response && response.users) {
-            setRecentSearches(response.users);
-        }else{
-            setRecentSearches([]);
-        }
-        setRecentSearchLoading(false);
-    };
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    setSearchValue(value);
+    if (value === '') {
+      // 검색어가 비어있으면 검색 결과를 초기화하고 최근 검색 기록 보여주기
+      setShowRecentSearches(true);
+    }
+  };
 
-    const handleRecentSearchClick = async (id: string) => {
-        setSearchValue(id);
-        setShowRecentSearches(false);
-        await handleSearchSubmit(id);
-    };
+  const handleSearchSubmit = async (value?: string) => {
+    const query = value || searchValue.trim();
+    if (!query) return;
 
-    useEffect(() => {
-        if(showRecentSearches) getRecentSearches();
-    }, [showRecentSearches]);
-    
-    return (
-        <div className={s.container}>
-            {recentSearchloading || loading && <Pending />}
-            {/*================================ 제목 부분 ===================================*/}
-            <div className={s.headContainer}>
-                <div className={s.searchSection}>
-                    <div className={s.searchBarContainer}>
-                        <SearchUsersBar
-                            value={searchValue}
-                            onChange={handleInputChange}
-                            onSubmit={handleSearchSubmit}
-                        />
-                    </div>
-                    <button
-                        className={s.cancelSearchButton}
-                        onClick={() => {navigate("/friendtab");}}
-                    >취소</button>
-                </div>
-            </div>
-            {/*============================== 최근 검색 기록 ================================*/}
+    setShowRecentSearches(false);
+    await refetchSearch();
+  };
 
-            {showRecentSearches &&
-                <div className={s.recentSearchContainer}>
-                    <RecentSearch
-                        onUserClick={handleRecentSearchClick}
-                        getRecentSearches={getRecentSearches}
-                        //recentSearchloading={recentSearchloading}
-                        recentSearches={recentSearches}
-                    />
-                </div>
-            }
-            {/*================================ 검색 결과 ================================*/}
-            {filteredUsers.length > 0 ? (
-                <div className={s.searchResultsContainer}>
-                    <SearchResults
-                        filteredUsers={filteredUsers}
-                        refreshSearch={handleSearchSubmit}
-                    />
-                </div>
-            ) : showNoResultMessage ? (
-                <div className={s.noResultModal}>
-                    <span className={s.noResultModalFirstText}>검색한 ID가 존재하지 않아요!</span>
-                    <span className={s.noResultModalSecondText}>ID를 다시 확인해주세요</span>
-                </div>
-            ) : null}
+  const handleRecentSearchClick = (id: string) => {
+    setSearchValue(id);
+    setShowRecentSearches(false);
+    refetchSearch();
+  };
+
+  return (
+    <div className={s.container}>
+      {(recentLoading || searchLoading) && <Pending />}
+      {/*================================ 제목 부분 ===================================*/}
+      <div className={s.headContainer}>
+        <div className={s.searchSection}>
+          <div className={s.searchBarContainer}>
+            <SearchUsersBar
+              value={searchValue}
+              onChange={handleInputChange}
+              onSubmit={handleSearchSubmit}
+            />
+          </div>
+          <button
+            className={s.cancelSearchButton}
+            onClick={() => navigate("/friendtab")}
+          >
+            취소
+          </button>
         </div>
-    )
-}
+      </div>
+      {/*============================== 최근 검색 기록 ================================*/}
+      {showRecentSearches && recentData && (
+        <div className={s.recentSearchContainer}>
+          <RecentSearch
+            onUserClick={handleRecentSearchClick}
+            getRecentSearches={refetchRecent}
+            recentSearches={recentData.users}
+          />
+        </div>
+      )}
+      {/*================================ 검색 결과 ================================*/}
+      {searchData && searchData.users.length > 0 ? (
+        <div className={s.searchResultsContainer}>
+          <SearchResults
+            filteredUsers={searchData.users}
+            refreshSearch={handleSearchSubmit}
+          />
+        </div>
+      ) : !searchLoading && !showRecentSearches ? (
+        <div className={s.noResultModal}>
+          <span className={s.noResultModalFirstText}>
+            검색한 ID가 존재하지 않아요!
+          </span>
+          <span className={s.noResultModalSecondText}>
+            ID를 다시 확인해주세요
+          </span>
+        </div>
+      ) : null}
+    </div>
+  );
+};
 
-export default SearchUsers
+export default SearchUsers;

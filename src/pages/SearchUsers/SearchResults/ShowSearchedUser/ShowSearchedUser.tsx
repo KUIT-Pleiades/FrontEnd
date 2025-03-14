@@ -7,16 +7,10 @@ import deleteFriendsButton from '../../../../assets/SearchUsers/deleteFriendsBut
 // 컴포넌트
 import DeleteFriendModal from '../../../../components/DeleteFriendModal/DeleteFriendModal';
 import SignalButton from '../../../../components/SignalButton/SignalButton';
+import { SocialUser } from '../../../../interfaces/Interfaces';
 
-// 인터페이스 정의
-interface User {
-    userId: string;
-    userName: string;
-    profile: string;
-    status: "FRIEND" | "RECEIVED" | "SENT" | "JUSTHUMAN";
-}
 interface SearchedUserProps {
-    user: User;
+    user: SocialUser;
     handleSendRequestFriend: (friendId: string) => void;
     handleDeleteRequest: (friendId: string, type: "REQUEST" | "FRIEND") => void;
     handleRejectRequest: (friendId: string) => void;

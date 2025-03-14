@@ -3,19 +3,10 @@ import s from './SearchResults.module.scss';
 //components
 import ShowSearchedUser from './ShowSearchedUser/ShowSearchedUser';
 import { fetchRequest } from '../../../functions/fetchRequest';
-
-//image files
-//import userProfileImg from '../../../assets/SearchUsers/searchedUserProfileImg.png';
-
-interface User {
-    userId: string;
-    userName: string;
-    profile: string;
-    status: "FRIEND" | "RECEIVED" | "SENT" | "JUSTHUMAN";
- }
+import { SocialUser } from '../../../interfaces/Interfaces';
 
 interface SearchResultsProps {
-    filteredUsers: User[];
+    filteredUsers: SocialUser[];
     refreshSearch: () => void;
 }
 

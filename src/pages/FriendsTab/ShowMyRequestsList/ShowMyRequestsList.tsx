@@ -3,7 +3,6 @@ import s from './ShowMyRequestsList.module.scss';
 import { OtherUser } from '../../../interfaces/Interfaces';
 
 //image files
-//import profileImageSmall from '../../../assets/FriendsTab/profileImageSmall.png';
 
 interface ShowMyRequestsListProps {
     otherUser: OtherUser;

@@ -4,21 +4,13 @@ import s from './RecentSearch.module.scss';
 
 // components
 import ShowRecentSearchUsers from './ShowRecentSearchUser/ShowRecentSearchUser';
-
-// image files
-//import userProfileImg from '../../../assets/SearchUsers/searchedUserProfileImg.png';
 import { fetchRequest } from '../../../functions/fetchRequest';
-
-interface User {
-    userId: string;
-    userName: string;
-    profile: string;
-}
+import { RecentSearchedUser } from '../../../interfaces/Interfaces';
 
 interface RecentSearchProps {
     onUserClick: (id: string) => void;
     getRecentSearches: () => void;
-    recentSearches: User[];
+    recentSearches: RecentSearchedUser[];
 }
 
 const RecentSearch: React.FC<RecentSearchProps> = ({ onUserClick, getRecentSearches, recentSearches }) => {

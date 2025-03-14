@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
 import s from "./ShowTotalFriendsList.module.scss";
-//import { Character } from "../../interfaces/Interfaces";
 
 // components
 import ShowFriendRequestsList from "../ShowFriendRequestsList/ShowFriendRequestsList";
@@ -13,19 +12,7 @@ import hideUpArrow from "../../../assets/FriendsTab/hideUpArrow.svg";
 import showDownArrow from "../../../assets/FriendsTab/showDownArrow.svg";
 import toggleDown from "../../../assets/FriendsTab/toggleDown.svg";
 import toggleUp from "../../../assets/FriendsTab/toggleUp.svg";
-
-interface Friend {
-  friendId: number;
-  userId: string;
-  userName: string;
-  profile: string;
-}
-
-interface FriendsData {
-  received: Friend[];
-  friend: Friend[];
-  sent: Friend[];
-}
+import { FriendsData } from "../../../interfaces/Interfaces";
 
 interface ShowTotalFriendsListProps {
   friendsData: FriendsData;
