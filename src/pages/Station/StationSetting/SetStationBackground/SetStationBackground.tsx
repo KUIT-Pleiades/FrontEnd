@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import s from './CreateStationBackground.module.scss';
+import s from './SetStationBackground.module.scss';
 
 // image files
 import slideBoxShowUpArrow from '../../../../assets/StationCreate/slideBoxShowupArrow.svg';
 
-interface CreateStationBackgroundProps {
+interface SetStationBackgroundProps {
 	backgrounds: string[];
     backgroundPrevs: string[];
     background: string;
@@ -14,7 +14,7 @@ interface CreateStationBackgroundProps {
 }
 //const IMG_BASE_URL: string = import.meta.env.VITE_PINATA_ENDPOINT;
 
-const CreateStationBackground: React.FC<CreateStationBackgroundProps> = ({
+const SetStationBackground: React.FC<SetStationBackgroundProps> = ({
 	backgrounds,
     backgroundPrevs,
     background,
@@ -88,5 +88,5 @@ const CreateStationBackground: React.FC<CreateStationBackgroundProps> = ({
     );
 };
 
-export default CreateStationBackground;
+export default SetStationBackground;
 

@@ -4,13 +4,14 @@ import { useCharacterStore } from "../../../store/useCharacterStore";
 import { fetchRequest } from "../../../functions/fetchRequest";
 import { useNavigate } from "react-router-dom";
 import planetIcon from "../../../assets/Icon/planet.svg";
-import stationBackgroundImg_01 from "../../../assets/backgroundImg/stationbackgroundImg/stationBackgroundImg_01.png";
 import copyBtn from "../../../assets/btnImg/copyBtn.png";
 //import plusBtn from "../../../assets/btnImg/plusBtn.png"
 import onerIcon from "../../../assets/Icon/oner.png";
 import messageIcon from "../../../assets/Icon/messageIcon.png";
 import signalBtn from "../../../assets/btnImg/signalBtn.png";
 import plusIcon from "../../../assets/Icon/plusIcon.png";
+
+const IMG_BASE_URL: string = import.meta.env.VITE_PINATA_ENDPOINT;
 
 interface StationMember {
   userId: string;
@@ -117,7 +118,7 @@ const StationSlide: React.FC<StationSlideProps> = ({
             <div
               className={s.background}
               style={{
-                backgroundImage: `url(${stationBackgroundImg_01})`,
+                backgroundImage: `url(${IMG_BASE_URL}${stationData.stationBackground}.png)`,
               }}
             ></div>
             <div className={s.planetIcon}>

@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { fetchRequest } from "../../../functions/fetchRequest";
 
 // 하위 스텝 컴포넌트
-import CreateStationInfo from "./CreateStationInfo/CreateStationInfo";
+import SetStationInfo from "./SetStationInfo/SetStationInfo";
 
 interface StationResquest {
   name?: string;
@@ -107,7 +107,7 @@ const StationSetting: React.FC = () => {
 
   return (
     <div className={s.container}>
-      <CreateStationInfo
+      <SetStationInfo
         stationName={stationName}
         setStationName={setStationName}
         stationIntro={stationIntro}

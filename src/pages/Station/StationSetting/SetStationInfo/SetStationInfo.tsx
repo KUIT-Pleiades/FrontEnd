@@ -4,13 +4,13 @@
    - "다음" 버튼 클릭 시 handleNext를 호출
 */
 import React from 'react';
-import s from './CreateStationInfo.module.scss';
+import s from './SetStationInfo.module.scss';
 import backBtn from "../../../../assets/btnImg/backBtn.png"
 
 // 이미지 파일 (슬래시)
 import slash from '../../../../assets/StationCreate/slash.svg';
 
-interface CreateStationInfoProps {
+interface SetStationInfoProps {
 	stationName: string;
 	setStationName: React.Dispatch<React.SetStateAction<string>>;
 	stationIntro: string;
@@ -26,7 +26,7 @@ interface CreateStationInfoProps {
 	handleNext: () => void;
 }
 
-const CreateStationInfo: React.FC<CreateStationInfoProps> = ({
+const SetStationInfo: React.FC<SetStationInfoProps> = ({
 	stationName,
 	setStationName,
 	stationIntro,
@@ -155,5 +155,5 @@ const CreateStationInfo: React.FC<CreateStationInfoProps> = ({
   );
 };
 
-export default CreateStationInfo;
+export default SetStationInfo;
 

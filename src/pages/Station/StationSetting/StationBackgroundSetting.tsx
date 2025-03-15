@@ -3,7 +3,7 @@ import s from "./CreateStation.module.scss";
 import { useNavigate } from "react-router-dom";
 import { fetchRequest } from "../../../functions/fetchRequest";
 
-import CreateStationBackground from "./CreateStationBackground/CreateStationBackground";
+import SetStationBackground from "./SetStationBackground/SetStationBackground";
 
 const IMG_BASE_URL: string = import.meta.env.VITE_PINATA_ENDPOINT;
 
@@ -20,7 +20,7 @@ const stationBackgroundPrevs = [
   `${IMG_BASE_URL}stationBackgroundPrevImg_04.png`,
 ];
 
-const CreateStation: React.FC = () => {
+const StationBackgroundSetting: React.FC = () => {
   const navigate = useNavigate();
 
   const [background, setBackground] = useState(
@@ -76,16 +76,16 @@ const CreateStation: React.FC = () => {
 
   return (
     <div className={s.container}>
-        <CreateStationBackground
-          backgrounds={stationBackgrounds}
-          backgroundPrevs={stationBackgroundPrevs}
-          background={background}
-          setBackground={setBackground}
-          handleBack={handleBack}
-          handleComplete={handleBackgroundComplete}
-        />
+      <SetStationBackground
+        backgrounds={stationBackgrounds}
+        backgroundPrevs={stationBackgroundPrevs}
+        background={background}
+        setBackground={setBackground}
+        handleBack={handleBack}
+        handleComplete={handleBackgroundComplete}
+      />
     </div>
   );
 };
 
-export default CreateStation;
+export default StationBackgroundSetting;
