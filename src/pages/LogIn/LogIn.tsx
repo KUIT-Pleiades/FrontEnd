@@ -35,11 +35,11 @@ export default function LogIn() {
             null
           );
           if (userData !== null) {
-            if (isMessage(userData)) {
-              console.log(userData.message);
+            if (isMessage(userData.data)) {
+              console.log(userData.data.message);
               navigate("/onboarding");
             } else {
-              updateUserInfo(userData);
+              updateUserInfo(userData.data);
             }
           } else {
             navigate("/loginfail");

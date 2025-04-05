@@ -65,8 +65,8 @@ const ProfileSetUp = ({ onNext, onPrev }: ProfileSetUpProps) => {
       }
 
       // 응답 메시지 사용
-      setIdCheckMessage(response.message);
-      return response.available;
+      setIdCheckMessage(response.data.message);
+      return response.data.available;
     } catch (error) {
       console.error("ID 중복확인 오류:", error);
       setIdCheckMessage("중복확인 중 오류가 발생했습니다.");

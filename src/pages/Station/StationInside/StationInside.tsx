@@ -67,7 +67,7 @@ const StationInside: React.FC = () => {
         null
       );
       if (response) {
-        setStationData(response);
+        setStationData(response.data);
       }
     } catch (err) {
       setError(err as Error);
@@ -106,7 +106,7 @@ const StationInside: React.FC = () => {
           null
         );
         if (response) {
-          setStationData(response);
+          setStationData(response.data);
         }
       } catch (err) {
         setError(err as Error);

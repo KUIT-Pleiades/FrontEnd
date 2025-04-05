@@ -24,7 +24,7 @@ export default function FriendStar() {
     const getUserInfo = async () => {
       const response = await axiosRequest<User>(`/home/${userId}`, "GET", null);
       if (response !== null) {
-        setUserData(response);
+        setUserData(response.data);
       } else {
         console.log("unvalid response");
       }

@@ -41,8 +41,8 @@ const MyReport: React.FC<ReportProps> = ({ onClose, stationId, userId }) => {
         );
 
         if (response) {
-          setReport(response.report);
-          setEditedAnswer(response.report.answer);
+          setReport(response.data.report);
+          setEditedAnswer(response.data.report.answer);
         }
       } catch (err) {
         setError(

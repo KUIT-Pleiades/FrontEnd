@@ -48,15 +48,15 @@ const Report = () => {
           axiosRequest<SearchHistoryResponse>("/reports/history", "GET", null),
         ]);
 
-        if (reportsResponse && reportsResponse.reports) {
-          setReports(reportsResponse.reports);
-          setFilteredReports(reportsResponse.reports);
+        if (reportsResponse && reportsResponse.data.reports) {
+          setReports(reportsResponse.data.reports);
+          setFilteredReports(reportsResponse.data.reports);
         } else {
           throw new Error("리포트를 불러오는데 실패했습니다.");
         }
 
-        if (historyResponse && historyResponse.history) {
-          setSearchHistory(historyResponse.history);
+        if (historyResponse && historyResponse.data.history) {
+          setSearchHistory(historyResponse.data.history);
         } else {
           throw new Error("검색 기록을 불러오는데 실패했습니다.");
         }
@@ -86,8 +86,8 @@ const Report = () => {
           null
         );
 
-        if (searchResponse && searchResponse.reports) {
-          setFilteredReports(searchResponse.reports);
+        if (searchResponse && searchResponse.data.reports) {
+          setFilteredReports(searchResponse.data.reports);
           setIsSearchResult(true);
           setShowSearchHistory(false);
           setSearchValue("");
@@ -99,8 +99,8 @@ const Report = () => {
             null
           );
 
-          if (historyResponse && historyResponse.history) {
-            setSearchHistory(historyResponse.history);
+          if (historyResponse && historyResponse.data.history) {
+            setSearchHistory(historyResponse.data.history);
           }
         }
       } catch (err) {

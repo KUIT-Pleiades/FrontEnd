@@ -35,7 +35,7 @@ const PersonalSetting: React.FC = () => {
         );
 
         if (response) {
-          setUserData(response);
+          setUserData(response.data);
         }
       } catch (error) {
         console.error("사용자 데이터 가져오기 실패:", error);

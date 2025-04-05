@@ -36,20 +36,27 @@ export default function KakaoLogin() {
   useEffect(() => {
     if (authorization) {
       const getUser = async () => {
-        const userData = await axiosRequest<UserInfo | Message>(
-          "/home",
-          "GET",
-          null
-        );
-        if (userData !== null) {
-          if (isMessage(userData)) {
-            console.log(userData.message);
+        try {
+          const userData = await axiosRequest<UserInfo | Message>(
+            "/home",
+            "GET",
+            null
+          );
+
+          // 응답 상태 코드 확인 (선택사항)
+          console.log("응답 상태 코드:", userData.status);
+
+          if (isMessage(userData.data)) {
+            console.log(userData.data.message);
             navigate("/onboarding");
           } else {
-            updateUserInfo(userData);
+            updateUserInfo(userData.data);
             navigate("/home");
           }
-        } else navigate("/loginfail");
+        } catch (error) {
+          console.error("사용자 정보 요청 오류:", error);
+          navigate("/loginfail"); // 오류 발생 시 로그인 실패 페이지로 이동
+        }
       };
       getUser();
     }

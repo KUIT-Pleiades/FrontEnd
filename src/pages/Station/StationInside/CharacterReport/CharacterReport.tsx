@@ -50,7 +50,7 @@ const CharacterReport: React.FC<ReportProps> = ({
         );
 
         if (response) {
-          setReportData(response);
+          setReportData(response.data);
         }
       } catch (err) {
         setError(err as Error);

@@ -52,12 +52,12 @@ const StationReport: React.FC<StationReportProps> = ({
           throw new Error("빈 응답이 반환되었습니다");
         }
 
-        if (!response.report) {
+        if (!response.data.report) {
           throw new Error("report 데이터가 존재하지 않습니다");
         }
 
-        setReportData(response.report);
-        setEditedAnswer(response.report.answer || ""); // answer가 null일 경우 빈 문자열로 초기화
+        setReportData(response.data.report);
+        setEditedAnswer(response.data.report.answer || ""); // answer가 null일 경우 빈 문자열로 초기화
       } catch (err) {
         console.error("API 에러:", err);
         setError(err as Error);
@@ -100,7 +100,7 @@ const StationReport: React.FC<StationReportProps> = ({
       }
 
       // 성공적으로 저장된 경우 reportData 업데이트
-			setReportData(response.report);
+			setReportData(response.data.report);
 			onReportSubmitted(); 
       console.log("리포트가 성공적으로 저장되었습니다:", response);
 

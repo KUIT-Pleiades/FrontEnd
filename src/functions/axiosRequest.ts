@@ -55,7 +55,7 @@ export const axiosRequest = async <T>(
   requestPoint: string,
   method: Methods,
   body: object | null
-): Promise<T | null> => {
+): Promise<{ data: T; status: number; message?: string }> => {
   try {
     const config: AxiosRequestConfig = {
       method,
@@ -63,9 +63,13 @@ export const axiosRequest = async <T>(
       data: body,
     };
     const response = await axiosInstance(config);
-    return response.data;
+    return {
+      data: response.data,
+      status: response.status,
+      message: response.data?.message,
+    };
   } catch (error) {
     console.error("API 요청 실패:", error);
-    return null;
+    throw error;
   }
 };

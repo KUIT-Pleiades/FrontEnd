@@ -42,11 +42,11 @@ export default function NaverLogin() {
           null
         );
         if (userData !== null) {
-          if (isMessage(userData)) {
+          if (isMessage(userData.data)) {
             console.log(userData.message);
             navigate("/onboarding");
           } else {
-            updateUserInfo(userData);
+            updateUserInfo(userData.data);
             navigate("/home");
           }
         } else navigate("/loginfail");

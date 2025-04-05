@@ -131,9 +131,9 @@ const FriendsTab: React.FC = () => {
               null
             );
             if (response) {
-                if(response.signals.length > 0){
-                    console.log("📩 받은 시그널 목록:", response.signals);
-                    setSignalsQueue(response.signals);
+                if(response.data.signals.length > 0){
+                    console.log("📩 받은 시그널 목록:", response.data.signals);
+                    setSignalsQueue(response.data.signals);
                     setCurrentSignalIndex(0);
                     setIsReceiveSignalPopupVisible(true);
                 }
@@ -180,7 +180,7 @@ const FriendsTab: React.FC = () => {
             );
             if (response) {
                 console.log("📜 친구 목록 불러오기:", response);
-                setFriendsData(response);
+                setFriendsData(response.data);
                 setLoading(false);
             }
         } catch (error) {

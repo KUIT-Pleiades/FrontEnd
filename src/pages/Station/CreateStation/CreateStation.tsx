@@ -105,9 +105,9 @@ const CreateStation: React.FC = () => {
       console.log('intro: ', stationIntro);
       console.log('reportNoticeTime: ', reportNoticeTime);
 
-      if (response && response.stationId) {
+      if (response && response.data.stationId) {
         console.log('정거장 생성 성공:', response);
-        sessionStorage.setItem('stationId', response.stationId);
+        sessionStorage.setItem('stationId', response.data.stationId);
         navigate('/station/stationinside');
       } else {
         console.log('정거장 생성 실패. 응답: ', response);

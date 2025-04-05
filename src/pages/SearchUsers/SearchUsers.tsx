@@ -51,8 +51,8 @@ const SearchUsers: React.FC = () => {
     
             setLoading(false);
     
-            if (response && Array.isArray(response.users) && response.users.length > 0) {
-                setFilteredUsers(response.users);
+            if (response && Array.isArray(response.data.users) && response.data.users.length > 0) {
+                setFilteredUsers(response.data.users);
             } else {
                 console.log('검색 결과 0명..');
                 setFilteredUsers([]);
@@ -73,8 +73,8 @@ const SearchUsers: React.FC = () => {
           "GET",
           null
         );
-        if (response && response.users) {
-            setRecentSearches(response.users);
+        if (response && response.data.users) {
+            setRecentSearches(response.data.users);
         }else{
             setRecentSearches([]);
         }
