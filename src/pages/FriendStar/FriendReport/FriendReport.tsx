@@ -93,7 +93,15 @@ const FriendReport = () => {
           )}`,
           "GET",
           null
+				);
+
+				// 검색기록 남기는 요청
+				await axiosRequest<void>(
+          `/reports?query=${encodeURIComponent(query.trim())}`,
+          "GET",
+          null
         );
+				
 
         if (searchResponse && searchResponse.data.reports) {
           setFilteredReports(searchResponse.data.reports);
