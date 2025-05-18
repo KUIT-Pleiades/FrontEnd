@@ -37,7 +37,6 @@ const FriendsTab: React.FC = () => {
   const [signalsQueue, setSignalsQueue] = useState<SignalFrom[]>([]);
   const [currentSignalIndex, setCurrentSignalIndex] = useState(0);
   const [isReceiveSignalPopupVisible, setIsReceiveSignalPopupVisible] = useState(false);
-  //const [isClearAllSignal, setIsClearAllSignal] = useState(true);
 
   
   const handleDeleteFriend = async (friendId: string) => {
@@ -118,26 +117,28 @@ const FriendsTab: React.FC = () => {
     }
   };
 
-  const handleDeleteSignal = async () => {
+  const closeSignalPopup = () => {
     const currentSignal = signalsQueue[currentSignalIndex];
+    const nextIndex = currentSignalIndex + 1;
+    if (nextIndex < signalsQueue.length) {
+      setCurrentSignalIndex(nextIndex);
+    } else {
+      setSignalsQueue([]);
+      setIsReceiveSignalPopupVisible(false);
+    }
+    handleDeleteSignal(currentSignal);
+  }
+
+  const handleDeleteSignal = async (currentSignal: SignalFrom) => {
     try {
       const res = await axiosRequest(`/friends/signals/${currentSignal.userId}`, "DELETE", null);
       if (res) {
-        const nextIndex = currentSignalIndex + 1;
-        if (nextIndex < signalsQueue.length) {
-          setCurrentSignalIndex(nextIndex);
-        } else {
-          setSignalsQueue([]);
-
-          //setIsClearAllSignal(true);
-          setIsReceiveSignalPopupVisible(false);
-        }
+        console.log("시그널 삭제 성공");
+      } else {
+        console.log("시그널 삭제 실패");
       }
     } catch (e) {
       console.error("시그널 삭제 실패:", e);
-      setSignalsQueue([]);
-      //setIsClearAllSignal(true);
-      setIsReceiveSignalPopupVisible(false);
     }
   };
 
@@ -200,7 +201,7 @@ const FriendsTab: React.FC = () => {
       {isReceiveSignalPopupVisible && signalsQueue.length > 0 && (
         <ReceiveSignalPopup
           username={signalsQueue[currentSignalIndex].userName}
-          handleCloseReceiveSignalPopup={handleDeleteSignal}
+          handleCloseReceiveSignalPopup={closeSignalPopup}
           imageIndex={signalsQueue[currentSignalIndex].imageIndex}
         />
       )}
