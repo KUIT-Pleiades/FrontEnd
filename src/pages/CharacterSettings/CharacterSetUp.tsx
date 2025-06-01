@@ -4,9 +4,8 @@ import resetBtn from "../../assets/btnImg/resetBtn.svg";
 import { useState } from "react";
 import FaceTab from "./characterSetUpTab/FaceTab";
 import { useCharacterStore } from "../../store/useCharacterStore";
-import OutFitTab from "./characterSetUpTab/OutFitTab";
-import ItemTab from "./characterSetUpTab/ItemTab";
 import Pending from "../PageManagement/Pending";
+import FashionTab from "./characterSetUpTab/OutFitTab";
 
 const IMG_BASE_URL: string = import.meta.env.VITE_PINATA_ENDPOINT;
 
@@ -142,7 +141,7 @@ const CharacterSetUp = ({ onNext }: CharacterSetUpProps) => {
             }`}
             onClick={() => setActiveMenu("face")}
           >
-            캐릭터
+            얼굴
           </button>
           <button
             className={`${s.menuItem} ${
@@ -150,27 +149,18 @@ const CharacterSetUp = ({ onNext }: CharacterSetUpProps) => {
             }`}
             onClick={() => setActiveMenu("costume")}
           >
-            의상
+            패션
           </button>
-          <button
-            className={`${s.menuItem} ${
-              activeMenu === "item" ? s.active : s.inactive
-            }`}
-            onClick={() => setActiveMenu("item")}
-          >
-            아이템
-          </button>
+          
         </div>
         <div className={s.contentArea}>
           {activeMenu === "face" && (
             <FaceTab increaseLoadCount={increaseLoadCount} />
           )}
           {activeMenu === "costume" && (
-            <OutFitTab increaseLoadCount={increaseLoadCount} />
+            <FashionTab increaseLoadCount={increaseLoadCount} />
           )}
-          {activeMenu === "item" && (
-            <ItemTab increaseLoadCount={increaseLoadCount} />
-          )}
+          
         </div>
       </div>
     </div>
