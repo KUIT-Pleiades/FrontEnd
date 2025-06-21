@@ -82,7 +82,25 @@ const FaceTab = ({ increaseLoadCount }: imgTabProps) => {
           className={faceTab === "얼굴" ? s.active : ""}
           onClick={() => setFaceTab("얼굴")}
         >
-          얼굴
+          눈
+        </button>
+        <button
+          className={faceTab === "코" ? s.active : ""}
+          onClick={() => setFaceTab("코")}
+        >
+          코
+        </button>
+        <button
+          className={faceTab === "입" ? s.active : ""}
+          onClick={() => setFaceTab("입")}
+        >
+          입
+        </button>
+        <button
+          className={faceTab === "점" ? s.active : ""}
+          onClick={() => setFaceTab("점")}
+        >
+          점
         </button>
       </div>
       <div className={s.tabContent}>

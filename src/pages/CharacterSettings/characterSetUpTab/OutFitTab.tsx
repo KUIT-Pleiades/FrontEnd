@@ -7,7 +7,7 @@ import { useCharacterStore } from "../../../store/useCharacterStore";
 import s from "./characterSetUptab.module.scss";
 import { imgTabProps } from "./FaceTab";
 
-const OutFitTab = ({ increaseLoadCount }: imgTabProps) => {
+const FashionTab = ({ increaseLoadCount }: imgTabProps) => {
   const [outfitTab, setOutfitTab] = useState("전체");
   const { userInfo, updateUserInfo } = useCharacterStore();
 
@@ -98,10 +98,22 @@ const OutFitTab = ({ increaseLoadCount }: imgTabProps) => {
           하의
         </button>
         <button
+          onClick={() => setOutfitTab("세트")}
+          className={outfitTab === "세트" ? s.active : ""}
+        >
+          세트
+        </button>
+        <button
           onClick={() => setOutfitTab("신발")}
           className={outfitTab === "신발" ? s.active : ""}
         >
           신발
+        </button>
+        <button
+          onClick={() => setOutfitTab("악세서리")}
+          className={outfitTab === "악세서리" ? s.active : ""}
+        >
+          악세서리
         </button>
       </div>
       <div className={s.tabContent}>
@@ -145,4 +157,4 @@ const OutFitTab = ({ increaseLoadCount }: imgTabProps) => {
   );
 };
 
-export default OutFitTab;
+export default FashionTab;
