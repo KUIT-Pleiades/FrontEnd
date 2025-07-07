@@ -80,34 +80,80 @@ p {
   }
 }
 
-// 레이어 순서: 액세서리>얼굴>상의>하의>신발>머리>피부
+// 일반: 피부 < 눈 < 코 < 입 < 점 < 머리 < 신발 < 하의 < 상의 < 아이템 
+
+//아이템: 눈< 머리 < 손목(왼/오) < 손(왼/오) < 목 < 귀
 .characterSkin {
-  z-index: 1;
+	z-index: 1;
+}
+
+.characterEyes {
+	z-index: 2;
+}
+
+.characterNose {
+	z-index: 3;
+}
+
+.characterMouth {
+	z-index: 4;
+}
+
+.characterMole {
+	z-index: 5;
 }
 
 .characterHair {
-  z-index: 2;
+	z-index: 6;
 }
 
 .characterShoes {
-  z-index: 3;
+	z-index: 7;
 }
 
 .characterBottom {
-  z-index: 4;
+	z-index: 8;
 }
 
 .characterTop {
-  z-index: 5;
+	z-index: 9;
 }
 
-.characterFace {
-  z-index: 6;
+.characterSet {
+	// 세트 의상은 상/하의보다 위에 오도록
+	z-index: 10;
 }
 
-.characterItem {
-  z-index: 7;
+
+
+/* 아이템들은 가장 위에 오도록 높은 z-index를 부여합니다. */
+.eyes_item {
+	z-index: 20;
 }
+
+.head {
+	z-index: 21;
+}
+
+.leftWrist,
+.rightWrist{
+	z-index: 22;
+}
+
+.leftHand,
+.rightHand {
+	z-index: 23;
+}
+
+.neck{
+	z-index: 24;
+}
+
+.ears{
+	z-index: 25;
+}
+
+
 
 .characterBackground {
   position: absolute;

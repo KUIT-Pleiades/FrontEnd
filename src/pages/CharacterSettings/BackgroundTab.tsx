@@ -1,43 +1,51 @@
-import { useCallback, useEffect, useState } from "react";
-import {
-  starBackImages,
-  starBackImg,
-} from "../../assets/ImageData/BackgroundImage";
+import { useCallback, useEffect } from "react";
+// --- [수정] 새로운 데이터 파일을 import 합니다. ---
+import { BackgroundImages } from "../../assets/ImageData/BackgroundImage";
 import { useCharacterStore } from "../../store/useCharacterStore";
 import s from "./backgroundTab.module.scss";
-import { imgTabProps } from "./characterSetUpTab/FaceTab";
 
-const BackgroundTab = ({ increaseLoadCount }: imgTabProps) => {
+// FaceTab에서 가져오던 타입을 제거하고, 직접 정의하거나 필요한 경우 로컬에 정의합니다.
+interface BackgroundTabProps {
+  increaseLoadCount: () => void;
+}
+
+const BackgroundTab = ({ increaseLoadCount }: BackgroundTabProps) => {
   const { userInfo, updateUserInfo } = useCharacterStore();
-  const [count, setCount] = useState(0);
 
+  // 이미지 로딩 로직을 더 안정적으로 수정
   useEffect(() => {
-    const NUM_OF_IMG = starBackImages.length;
-    starBackImages.forEach(({ src }) => {
+    let loadedCount = 0;
+    const NUM_OF_IMG = BackgroundImages.length;
+
+    if (NUM_OF_IMG === 0) {
+      increaseLoadCount();
+      return;
+    }
+
+    BackgroundImages.forEach(({ src }) => {
       const img = new Image();
       img.src = src;
 
-      img.onload = () => {
-        setCount(count + 1);
-        if (count === NUM_OF_IMG) {
+      const onImageLoadOrError = () => {
+        loadedCount++;
+        if (loadedCount === NUM_OF_IMG) {
           increaseLoadCount();
         }
       };
 
+      img.onload = onImageLoadOrError;
       img.onerror = () => {
-        console.log(`${src} load failed`);
-        setCount(count + 1);
-        if (count === NUM_OF_IMG) {
-          increaseLoadCount();
-        }
+        console.error(`${src} load failed`);
+        onImageLoadOrError();
       };
     });
-  }, [count, increaseLoadCount]);
+  }, [increaseLoadCount]);
 
+  // --- [수정] 핸들러 로직이 더 간단해집니다. ---
   const handleImageClick = useCallback(
-    (image: starBackImg) => {
+    (imageName: string) => {
       updateUserInfo({
-        starBackground: image.starBackground,
+        starBackground: imageName, // UserInfo의 속성과 정확히 일치
       });
     },
     [updateUserInfo]
@@ -47,17 +55,15 @@ const BackgroundTab = ({ increaseLoadCount }: imgTabProps) => {
     <div className={s.tabContainer}>
       <div className={s.tabContent}>
         <div className={s.gridItems}>
-          {starBackImages.slice(0, 4).map((image, idx) => (
+          {BackgroundImages.map((image) => (
             <div
-              key={idx}
+              key={image.name}
               className={`${s.item} ${
-                image.starBackground === userInfo.starBackground
-                  ? s.selected
-                  : ""
+                image.name === userInfo.starBackground ? s.selected : ""
               }`}
-              onClick={() => handleImageClick(image)}
+              onClick={() => handleImageClick(image.name)}
             >
-              <img src={image.src} alt={`${image.starBackground} 이미지`} />
+              <img src={image.src} alt={image.name} />
             </div>
           ))}
         </div>

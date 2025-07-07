@@ -15,10 +15,12 @@ export default function FriendStar() {
 	const navigate = useNavigate();
   const location = useLocation();
   const userId: string = location.state?.userId;
-  const background = getImage("background_01");
 
   const [userData, setUserData] = useState<User>();
   const [loadCompleted, setLoadCompleted] = useState(0);
+  const [background, setBackground] = useState<string>(
+    getImage("background_01")
+  );
 
   const increaseLoad = useCallback(() => {
     setLoadCompleted((prev) => prev + 1);
@@ -39,6 +41,7 @@ export default function FriendStar() {
   useEffect(() => {
     if (userData) {
       const starBg = getImage(userData.starBackground);
+      setBackground(starBg);
       loadImage(userData.character, increaseLoad);
       loadImage(starBg, increaseLoad);
     }

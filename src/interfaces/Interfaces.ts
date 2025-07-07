@@ -53,6 +53,36 @@ export interface User {
   profile: string;
 }
 
+// export interface UserInfo {
+//   userId: string;
+//   userName: string;
+//   birthDate: string;
+//   starBackground: string;
+//   character: string;
+//   profile: string;
+//   face: {
+//     skinColor: string;
+//     hair: string;
+//     expression: string;
+//   };
+//   outfit: {
+//     top: string;
+//     bottom: string;
+//     shoes: string;
+//   };
+//   item: {
+//     head: string;
+//     eyes: string;
+//     ears: string;
+//     neck: string;
+//     leftWrist: string;
+//     rightWrist: string;
+//     leftHand: string;
+//     rightHand: string;
+//   };
+// }
+
+/** [수정] 캐릭터와 유저 정보를 통합한 새로운 인터페이스 */
 export interface UserInfo {
   userId: string;
   userName: string;
@@ -60,25 +90,32 @@ export interface UserInfo {
   starBackground: string;
   character: string;
   profile: string;
+
   face: {
-    skinColor: string;
-    hair: string;
-    expression: string;
+    skinColor: string; // 피부색
+    hair: string; // 머리
+    eyes: string; // 눈
+    nose: string; // 코
+    mouth: string; // 입
+    mole: string; // 점
   };
+
   outfit: {
-    top: string;
-    bottom: string;
-    shoes: string;
+    top: string; // 상의
+    bottom: string; // 하의
+    set: string; // 세트
+    shoes: string; // 신발
   };
+
   item: {
-    head: string;
-    eyes: string;
-    ears: string;
-    neck: string;
-    leftWrist: string;
-    rightWrist: string;
-    leftHand: string;
-    rightHand: string;
+    head: string; // 머리에 착용하는 아이템
+    eyes_item: string; // 눈에 착용하는 아이템
+    ears: string; // 귀에 착용하는 아이템
+    neck: string; // 목에 착용하는 아이템
+    leftWrist: string; // 왼쪽 손목에 착용하는 아이템
+    rightWrist: string; // 오른쪽 손목에 착용하는 아이템
+    leftHand: string; // 왼쪽 손에 착용하는 아이템
+    rightHand: string; // 오른쪽 손에 착용하는 아이템
   };
 }
 
@@ -136,6 +173,43 @@ export interface AvailableItems {
       imgurl: string;
     }
   ];
+}
+
+/** 리팩토링을 위한 새로운 UserInfo 인터페이스 */
+export interface NewUserInfo {
+  userId: string;
+  userName: string;
+  birthDate: string;
+  starBackground: string;
+  character: string;
+  profile: string;
+
+  face: {
+    skinColor: string;
+    hair: string;
+    eyes: string;
+    nose: string;
+    mouth: string;
+    mole: string;
+  };
+
+  outfit: {
+    top: string;
+    bottom: string;
+    set: string;
+    shoes: string;
+  };
+
+  item: {
+    head: string;
+    eyes_item: string;
+    ears: string;
+    neck: string;
+    leftWrist: string;
+    rightWrist: string;
+    leftHand: string;
+    rightHand: string;
+  };
 }
 
 export interface AvailableStationBackground {

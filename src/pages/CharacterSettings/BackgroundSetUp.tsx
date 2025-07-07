@@ -21,7 +21,9 @@ const BackgroundSetUp = ({ onPrev }: BackgroundSetUpProps) => {
   const location = useLocation();
   const { userInfo, updateUserInfo } = useCharacterStore();
   const [loadingState, setLoadingState] = useState(false);
-  const [showList, setShowList] = useState(true);
+	const [showList, setShowList] = useState(true);
+	
+	const isWearingSet = !!userInfo.outfit.set;
 
   const handleLoadingState = () => {
     setLoadingState(true);
@@ -31,7 +33,7 @@ const BackgroundSetUp = ({ onPrev }: BackgroundSetUpProps) => {
   const signupMutation = useSignupMutation(location.pathname.includes("onboarding"));
 
   const backgroundStyle = {
-    backgroundImage: `url(${IMG_BASE_URL}${userInfo.starBackground}.png)`,
+    backgroundImage: `url(${IMG_BASE_URL}${userInfo.starBackground})`,
     overflow: "hidden",
   };
 
@@ -75,24 +77,83 @@ const BackgroundSetUp = ({ onPrev }: BackgroundSetUpProps) => {
         <button className={s.nextBtn} onClick={complete}>
           완료
         </button>
-        <p className={s.pDescription}>내 캐릭터에 어울리는 배경을 골라보세요!</p>
+        <p className={s.pDescription}>
+          내 캐릭터에 어울리는 배경을 골라보세요!
+        </p>
         <div className={s.characterContainer}>
-          <img className={s.characterSkin} src={`${IMG_BASE_URL}${userInfo.face.skinColor}.png`} alt="skin" />
-          <img className={s.characterFace} src={`${IMG_BASE_URL}${userInfo.face.expression}.png`} alt="face" />
-          <img className={s.characterHair} src={`${IMG_BASE_URL}${userInfo.face.hair}.png`} alt="hair" />
-          <img className={s.characterTop} src={`${IMG_BASE_URL}${userInfo.outfit.top}.png`} alt="top" />
-          <img className={s.characterBottom} src={`${IMG_BASE_URL}${userInfo.outfit.bottom}.png`} alt="bottom" />
-          <img className={s.characterShoes} src={`${IMG_BASE_URL}${userInfo.outfit.shoes}.png`} alt="shoes" />
-          {Object.entries(userInfo.item).map(([key, value]) =>
-            value ? (
-              <img
-                key={key}
-                className={s.characterItem}
-                src={`${IMG_BASE_URL}${value}.png`}
-                alt={`${key}Item`}
-              />
-            ) : null
+          <img
+            className={s.characterSkin}
+            src={`${IMG_BASE_URL}${userInfo.face.skinColor}.png`}
+            alt="skin"
+          />
+          <img
+            className={s.characterEyes}
+            src={`${IMG_BASE_URL}${userInfo.face.eyes}.png`}
+            alt="eyes"
+          />
+          <img
+            className={s.characterNose}
+            src={`${IMG_BASE_URL}${userInfo.face.nose}.png`}
+            alt="nose"
+          />
+          <img
+            className={s.characterMouth}
+            src={`${IMG_BASE_URL}${userInfo.face.mouth}.png`}
+            alt="mouth"
+          />
+          {userInfo.face.mole && (
+            <img
+              className={s.characterMole}
+              src={`${IMG_BASE_URL}${userInfo.face.mole}.png`}
+              alt="mole"
+            />
           )}
+
+          <img
+            className={s.characterHair}
+            src={`${IMG_BASE_URL}${userInfo.face.hair}.png`}
+            alt="hair"
+          />
+
+          {!isWearingSet && (
+            <>
+              <img
+                className={s.characterTop}
+                src={`${IMG_BASE_URL}${userInfo.outfit.top}.png`}
+                alt="top"
+              />
+              <img
+                className={s.characterBottom}
+                src={`${IMG_BASE_URL}${userInfo.outfit.bottom}.png`}
+                alt="bottom"
+              />
+            </>
+          )}
+          {isWearingSet && (
+            <img
+              className={s.characterSet}
+              src={`${IMG_BASE_URL}${userInfo.outfit.set}.png`}
+              alt="set"
+            />
+          )}
+
+          <img
+            className={s.characterShoes}
+            src={`${IMG_BASE_URL}${userInfo.outfit.shoes}.png`}
+            alt="shoes"
+          />
+
+          {Object.entries(userInfo.item).map(([part, src]) => {
+            if (!src) return null;
+            return (
+              <img
+                key={part}
+                className={s[part]}
+                src={`${IMG_BASE_URL}${src}.png`}
+                alt={part}
+              />
+            );
+          })}
         </div>
       </div>
       <div
@@ -108,7 +169,11 @@ const BackgroundSetUp = ({ onPrev }: BackgroundSetUpProps) => {
       {!showList && (
         <div className={s.bottomBar}>
           <div className={s.openBtn} onClick={() => setShowList(true)}>
-            <img src={openBtn} alt="" style={{ width: "14px", marginTop: "9px" }} />
+            <img
+              src={openBtn}
+              alt=""
+              style={{ width: "14px", marginTop: "9px" }}
+            />
           </div>
         </div>
       )}

@@ -1,39 +1,12 @@
 // src/pages/CharacterSettings/hooks/useGenerateCharacterImageMutation.ts
 import { useMutation } from "@tanstack/react-query";
-import { CharacterImg } from "../../../interfaces/Interfaces";
+import { CharacterImg, UserInfo } from "../../../interfaces/Interfaces";
 
 const IMG_MAKER = import.meta.env.VITE_IMG_MAKER;
 
-interface CharacterData {
-  userId: string;
-  userName: string;
-  birthDate: string;
-  starBackground: string;
-  face: {
-    skinColor: string;
-    hair: string;
-    expression: string;
-  };
-  outfit: {
-    top: string;
-    bottom: string;
-    shoes: string;
-  };
-  item: {
-    head: string;
-    eyes: string;
-    ears: string;
-    neck: string;
-    leftWrist: string;
-    rightWrist: string;
-    leftHand: string;
-    rightHand: string;
-  };
-}
-
 export const useGenerateCharacterImageMutation = () => {
-  return useMutation<CharacterImg, Error, CharacterData>({
-    mutationFn: async (characterData) => {
+  return useMutation<CharacterImg, Error, UserInfo>({
+    mutationFn: async (characterData: UserInfo) => {
       const response = await fetch(IMG_MAKER, {
         method: "POST",
         headers: {

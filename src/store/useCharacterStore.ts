@@ -15,8 +15,40 @@ interface CharacterStore {
   resetUserInfo: () => void; // 캐릭터 초기화 함수
 }
 
+// const initialUserInfo: UserInfo = {
+//   // 초기 캐릭터 상태 -> 디자이너, pm 과 상의
+//   userId: "",
+//   userName: "",
+//   birthDate: "",
+//   starBackground: "background_01",
+//   character:
+//     "https://gateway.pinata.cloud/ipfs/QmWC4899NqLPTqMSVFNZS5qzSUvCH1agcCdRzRrFe1um85",
+//   profile:
+//     "https://gateway.pinata.cloud/ipfs/QmURNcGX98UAecKyEELM39117X7RwQZE8B1dtm56B4vxEJ",
+//   face: {
+//     skinColor: "skin_01",
+//     hair: "hair_01",
+//     expression: "face_01",
+//   },
+//   outfit: {
+//     top: "top_01",
+//     bottom: "bottom_01",
+//     shoes: "shoes_01",
+//   },
+//   item: {
+//     head: "",
+//     eyes: "",
+//     ears: "",
+//     neck: "",
+//     leftWrist: "",
+//     rightWrist: "",
+//     leftHand: "",
+//     rightHand: "",
+//   },
+// };
+
+// [수정] 새로운 UserInfo 구조에 맞게 초기 상태값 변경
 const initialUserInfo: UserInfo = {
-  // 초기 캐릭터 상태 -> 디자이너, pm 과 상의
   userId: "",
   userName: "",
   birthDate: "",
@@ -26,18 +58,22 @@ const initialUserInfo: UserInfo = {
   profile:
     "https://gateway.pinata.cloud/ipfs/QmURNcGX98UAecKyEELM39117X7RwQZE8B1dtm56B4vxEJ",
   face: {
-    skinColor: "skin_01",
-    hair: "hair_01",
-    expression: "face_01",
+    skinColor: "face_skin_01.png",
+    hair: "face_hair_01.png",
+    eyes: "face_eyes_01.png", // 기본값 추가
+    nose: "face_nose_01.png", // 기본값 추가
+    mouth: "face_mouth_01.png", // 기본값 추가
+    mole: "", // 점은 기본값 없음
   },
   outfit: {
-    top: "top_01",
-    bottom: "bottom_01",
-    shoes: "shoes_01",
+    top: "fashion_top_01.png",
+    bottom: "fashion_bottom_01.png",
+    set: "", // 세트는 기본값 없음
+    shoes: "fashion_shoes_01.png",
   },
   item: {
     head: "",
-    eyes: "",
+    eyes_item: "",
     ears: "",
     neck: "",
     leftWrist: "",

@@ -1,29 +1,24 @@
 const IMG_BASE_URL: string = import.meta.env.VITE_PINATA_ENDPOINT;
 
-const background_01 = `${IMG_BASE_URL}background_01.png`;
-const background_02 = `${IMG_BASE_URL}background_02.png`;
-const background_03 = `${IMG_BASE_URL}background_03.png`;
-const background_04 = `${IMG_BASE_URL}background_04.png`;
-const background_05 = `${IMG_BASE_URL}background_05.png`;
-
-export interface starBackImg {
-  starBackground: string;
+// 타입 정의
+export interface BackgroundItem {
+  name: string;
   src: string;
 }
 
-const images = {
-  starBack: {
-    background_01,
-    background_02,
-    background_03,
-    background_04,
-    background_05,
-  },
-};
+// 최종적으로 모든 배경 아이템을 담는 배열
+export const BackgroundImages: BackgroundItem[] = [];
 
-export const starBackImages: starBackImg[] = [
-  ...Object.entries(images.starBack).map(([keyof, src]) => ({
-    starBackground: keyof,
-    src: src,
-  })),
-];
+// 배경 이미지의 총 개수 (★★★★★ 실제 파일 개수에 맞게 수정!)
+const totalBackgrounds = 5;
+
+// 반복문을 통해 모든 배경 아이템의 정보를 동적으로 생성
+for (let i = 1; i <= totalBackgrounds; i++) {
+  const num = i.toString().padStart(2, "0");
+  const fileName = `background_${num}.png`; // "background_01.png" 형식
+
+  BackgroundImages.push({
+    name: fileName,
+    src: `${IMG_BASE_URL}${fileName}`,
+  });
+}
