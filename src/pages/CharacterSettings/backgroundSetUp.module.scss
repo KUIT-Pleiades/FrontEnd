@@ -124,40 +124,39 @@ p {
 }
 
 // 레이어 순서: 액세서리>얼굴>상의>하의>신발>머리>피부
-.characterSkin {
-  z-index: 1;
+/* 아이템들은 가장 위에 오도록 높은 z-index를 부여합니다. */
+.eyes_item {
+	z-index: 20;
 }
 
-.characterHair {
-  z-index: 2;
+.head {
+	z-index: 21;
 }
 
-.characterShoes {
-  z-index: 3;
+.leftWrist,
+.rightWrist {
+	z-index: 22;
 }
 
-.characterBottom {
-  z-index: 4;
+.leftHand,
+.rightHand {
+	z-index: 23;
 }
 
-.characterTop {
-  z-index: 5;
+.neck {
+	z-index: 24;
 }
 
-.characterFace {
-  z-index: 6;
-}
-
-.characterItem {
-  z-index: 7;
+.ears {
+	z-index: 25;
 }
 
 .backgroundList {
   position: absolute;
   background-color: #FFF;
   width: 100%;
-  height: 16%;
-  top: 84%;
+  height: fit-content;
+  bottom: 0;
   z-index: 10;
 }
 

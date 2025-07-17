@@ -19,7 +19,7 @@ export default function FriendStar() {
   const [userData, setUserData] = useState<User>();
   const [loadCompleted, setLoadCompleted] = useState(0);
   const [background, setBackground] = useState<string>(
-    getImage("background_01")
+        getImage("bg_star_01")
   );
 
   const increaseLoad = useCallback(() => {

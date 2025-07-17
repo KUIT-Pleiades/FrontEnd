@@ -20,7 +20,7 @@ interface CharacterStore {
 //   userId: "",
 //   userName: "",
 //   birthDate: "",
-//   starBackground: "background_01",
+//   starBackground: "bg_star_01",
 //   character:
 //     "https://gateway.pinata.cloud/ipfs/QmWC4899NqLPTqMSVFNZS5qzSUvCH1agcCdRzRrFe1um85",
 //   profile:
@@ -52,7 +52,7 @@ const initialUserInfo: UserInfo = {
   userId: "",
   userName: "",
   birthDate: "",
-  starBackground: "background_01",
+  starBackground: "bg_star_01.png", // 기본 배경 이미지
   character:
     "https://gateway.pinata.cloud/ipfs/QmWC4899NqLPTqMSVFNZS5qzSUvCH1agcCdRzRrFe1um85",
   profile:

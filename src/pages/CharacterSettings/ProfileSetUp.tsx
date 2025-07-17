@@ -114,35 +114,35 @@ const ProfileSetUp = ({ onNext, onPrev }: ProfileSetUpProps) => {
         <div className={s.characterContainer}>
           <img
             className={s.characterSkin}
-            src={`${IMG_BASE_URL}${userInfo.face.skinColor}.png`}
+            src={`${IMG_BASE_URL}${userInfo.face.skinColor}`}
             alt="skin"
           />
           <img
             className={s.characterEyes}
-            src={`${IMG_BASE_URL}${userInfo.face.eyes}.png`}
+            src={`${IMG_BASE_URL}${userInfo.face.eyes}`}
             alt="eyes"
           />
           <img
             className={s.characterNose}
-            src={`${IMG_BASE_URL}${userInfo.face.nose}.png`}
+            src={`${IMG_BASE_URL}${userInfo.face.nose}`}
             alt="nose"
           />
           <img
             className={s.characterMouth}
-            src={`${IMG_BASE_URL}${userInfo.face.mouth}.png`}
+            src={`${IMG_BASE_URL}${userInfo.face.mouth}`}
             alt="mouth"
           />
           {userInfo.face.mole && (
             <img
               className={s.characterMole}
-              src={`${IMG_BASE_URL}${userInfo.face.mole}.png`}
+              src={`${IMG_BASE_URL}${userInfo.face.mole}`}
               alt="mole"
             />
           )}
 
           <img
             className={s.characterHair}
-            src={`${IMG_BASE_URL}${userInfo.face.hair}.png`}
+            src={`${IMG_BASE_URL}${userInfo.face.hair}`}
             alt="hair"
           />
 
@@ -150,12 +150,12 @@ const ProfileSetUp = ({ onNext, onPrev }: ProfileSetUpProps) => {
             <>
               <img
                 className={s.characterTop}
-                src={`${IMG_BASE_URL}${userInfo.outfit.top}.png`}
+                src={`${IMG_BASE_URL}${userInfo.outfit.top}`}
                 alt="top"
               />
               <img
                 className={s.characterBottom}
-                src={`${IMG_BASE_URL}${userInfo.outfit.bottom}.png`}
+                src={`${IMG_BASE_URL}${userInfo.outfit.bottom}`}
                 alt="bottom"
               />
             </>
@@ -163,14 +163,14 @@ const ProfileSetUp = ({ onNext, onPrev }: ProfileSetUpProps) => {
           {isWearingSet && (
             <img
               className={s.characterSet}
-              src={`${IMG_BASE_URL}${userInfo.outfit.set}.png`}
+              src={`${IMG_BASE_URL}${userInfo.outfit.set}`}
               alt="set"
             />
           )}
 
           <img
             className={s.characterShoes}
-            src={`${IMG_BASE_URL}${userInfo.outfit.shoes}.png`}
+            src={`${IMG_BASE_URL}${userInfo.outfit.shoes}`}
             alt="shoes"
           />
 
@@ -180,7 +180,7 @@ const ProfileSetUp = ({ onNext, onPrev }: ProfileSetUpProps) => {
               <img
                 key={part}
                 className={s[part]}
-                src={`${IMG_BASE_URL}${src}.png`}
+                src={`${IMG_BASE_URL}${src}`}
                 alt={part}
               />
             );
