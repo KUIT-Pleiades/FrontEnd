@@ -6,12 +6,12 @@ import s from "./StationInside.module.scss";
 import backBtn from "../../../assets/btnImg/whiteBackBtn.png";
 import customBtn from "../../../assets/btnImg/customBtn.png";
 import settingBtn from "../../../assets/btnImg/settingBtn.png";
-import messageBtn from "../../../assets/btnImg/messageBtn.svg";
 import StationSlide from "../StationSlide/StationSlide";
 import StationReport from "./StationReport/StationReport";
 import MyReport from "./CharacterReport/MyReport";
 import CharacterReport from "./CharacterReport/CharacterReport";
 import Pending from "../../PageManagement/Pending";
+import DraggableMember from "./DraggableMember";
 
 const IMG_BASE_URL: string = import.meta.env.VITE_PINATA_ENDPOINT;
 
@@ -47,6 +47,8 @@ const StationInside: React.FC = () => {
   const [selectedMember, setSelectedMember] = useState<StationMember | null>(
     null
   );
+  const [memberPositions, setMemberPositions] = useState<Record<string, { x: number; y: number }>>({});
+  const [, setIsDragging] = useState(false);
   const { userInfo } = useCharacterStore();
 
   const handleSettingClick = () => {
@@ -55,6 +57,13 @@ const StationInside: React.FC = () => {
 	
 	const handleCustomClick = () => {
     navigate("/station/stationbackgroundsetting");
+  };
+
+  const handlePositionChange = (userId: string, x: number, y: number) => {
+    setMemberPositions(prev => ({
+      ...prev,
+      [userId]: { x, y }
+    }));
   };
 
   // 스테이션 데이터를 새로고침하는 함수
@@ -107,6 +116,14 @@ const StationInside: React.FC = () => {
         );
         if (response) {
           setStationData(response.data);
+          const initialPositions: Record<string, { x: number; y: number }> = {};
+          response.data.stationMembers.forEach((member) => {
+            initialPositions[member.userId] = {
+              x: member.positionX,
+              y: member.positionY
+            };
+          });
+          setMemberPositions(initialPositions);
         }
       } catch (err) {
         setError(err as Error);
@@ -155,51 +172,14 @@ const StationInside: React.FC = () => {
       <div className={s.content}>
         <div className={s.memberList}>
           {stationData.stationMembers.map((member) => (
-            <div
+            <DraggableMember
               key={member.userId}
-              className={s.memberItem}
-              style={{
-                position: "fixed",
-                left: `${member.positionX}dvw`,
-                top: `${member.positionY}dvh`,
-                width: "30dvw",
-              }}
-            >
-              <img
-                src={member.character}
-                alt=""
-                style={{
-                  position: "fixed",
-                  left: `${member.positionX}dvw`,
-                  top: `${member.positionY}dvh`,
-                  width: "30dvw",
-                }}
-              />
-              {member.todayReport && (
-                <div
-                  className={s.messageIcon}
-                  style={{
-                    position: "fixed",
-                    left: `${member.positionX}dvw`,
-                    top: `${member.positionY}dvh`,
-                    zIndex: 100,
-                  }}
-                >
-                  <img
-                    src={messageBtn}
-                    alt="리포트"
-                    style={{
-                      position: "fixed",
-                      left: `${member.positionX + 20}dvw`,
-                      top: `${member.positionY + 2}dvh`,
-                      zIndex: 100,
-                      height: "7dvw",
-                    }}
-                    onClick={() => handleMemberClick(member)}
-                  />
-                </div>
-              )}
-            </div>
+              member={member}
+              position={memberPositions[member.userId] || { x: member.positionX, y: member.positionY }}
+              onPositionChange={handlePositionChange}
+              onMemberClick={() => handleMemberClick(member)}
+              onDragStateChange={setIsDragging}
+            />
           ))}
         </div>
       </div>

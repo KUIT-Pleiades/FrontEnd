@@ -91,3 +91,11 @@
 	top: 20%;
 }
 
+.memberItem {
+	transition: transform 0.2s ease-out;
+	
+	&:active {
+		transform: scale(1.1);
+	}
+}
+
