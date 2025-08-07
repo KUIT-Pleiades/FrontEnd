@@ -12,20 +12,21 @@ import KakaoLogin from "./pages/LogIn/KakaoLogin";
 import AuthHandler from "./pages/PageManagement/AuthHandler";
 import CharacterSettings from "./pages/CharacterSettings/CharacterSettings";
 import Setting from "./pages/Setting/Setting";
-import Market from "./pages/Market/Market";
 import MyStar from "./pages/Home/MyStar";
 import CreateStation from "./pages/Station/CreateStation/CreateStation";
 import Report from "./pages/Report/Report";
 import StationInside from "./pages/Station/StationInside/StationInside";
 import PersonalSetting from "./pages/Setting/PersonalSetting/PersonalSetting";
 import ProfileSetting from "./pages/Setting/ProfileSetting/ProfileSetting";
-import OfficialStore from "./pages/Market/OfficialStore/OfficialStore";
-import UsedStore from "./pages/Market/UsedStore";
-import MyPage from "./pages/Market/MyPage";
+import OfficialUsedStore from "./pages/Market/OfficialStore/OfficialUsedStore";
 import StationSetting from "./pages/Station/StationSetting/StationSetting";
 import StationBackgroundSetting from "./pages/Station/StationSetting/StationBackgroundSetting";
 import FriendStar from "./pages/FriendStar/FriendStar";
 import FriendReport from "./pages/FriendStar/FriendReport/FriendReport";
+import MarketHome from "./pages/Market/MarketHome";
+import MyItemSell from "./pages/Market/MyItemSell/MyItemSell";
+import MyProductManagement from "./pages/Market/MyProductManagement/MyProductManagement";
+import TransactionHistory from "./pages/Market/TransactionHistory/TransactionHistory";
 
 export default function App() {
   return (
@@ -56,11 +57,19 @@ export default function App() {
             ></Route>
           </Route>
           <Route path="/report" element={<Report />}></Route>
-          <Route path="market" element={<Market />}>
-            <Route index element={<OfficialStore />} />
-            <Route path="used" element={<UsedStore />} />
-            <Route path="my" element={<MyPage />} />
+          <Route path="market" element={<Home />}>
+            <Route index element={<MarketHome />} />
           </Route>
+          <Route path="market/official-store" element={<OfficialUsedStore />} />
+          <Route path="market/my-item-sell" element={<MyItemSell />} />
+          <Route
+            path="market/my-product-management"
+            element={<MyProductManagement />}
+          />
+          <Route
+            path="market/transaction-history"
+            element={<TransactionHistory />}
+          />
           <Route path="setting" element={<Setting />}>
             <Route index element={<PersonalSetting />} />
             <Route path="profile" element={<ProfileSetting />} />

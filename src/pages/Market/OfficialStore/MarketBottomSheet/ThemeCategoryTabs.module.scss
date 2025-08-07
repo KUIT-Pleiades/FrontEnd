@@ -1,0 +1,41 @@
+.themeContainer {
+	display: flex;
+	overflow-x: auto;
+	white-space: nowrap;
+	padding: 10px;
+
+	&::-webkit-scrollbar {
+		display: none;
+		/* Hide scrollbar for Chrome, Safari and Opera */
+	}
+
+	-ms-overflow-style: none;
+	/* IE and Edge */
+	scrollbar-width: none;
+	/* Firefox */
+}
+
+.themeTab {
+	padding: 8px 16px;
+	cursor: pointer;
+	border: none;
+	background-color: transparent;
+	// transition: color 0.3s;
+	color: var(--gray-22, #444);
+	font-family: Pretendard;
+	font-size: 15px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+
+	&.active {
+		color: #000;
+		font-weight: bold;
+	}
+}
+
+.themeIcon {
+  width: 16px;
+  height: 15px;
+	margin-top: 3px;
+}

@@ -1,0 +1,301 @@
+.container {
+	position: relative;
+	height: 100dvh;
+	width: 100dvw;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	overflow: hidden;
+}
+
+.header {
+	position: relative;
+	width: calc(100% - 32px);
+	height: 7dvh; // 헤더 높이 지정
+	padding: 0 16px;
+	background-color: white; // 배경색 추가
+	z-index: 100; // 다른 요소들 위에 보이도록 z-index 설정
+	display: flex;
+	justify-content: space-between; // 자식 요소들을 양쪽 끝으로 정렬
+	align-items: center; // 세로 중앙 정렬
+
+	// 뒤로가기 버튼
+	.backButton {
+		background: none;
+		border: none;
+		padding: 0;
+		cursor: pointer;
+
+
+		img {
+			width: 7px;
+			height: 14px;
+			flex-shrink: 0;
+		}
+	}
+
+	// 공식몰, 중고몰 탭 그룹
+	.tabGroup {
+		display: flex;
+		gap: 16px; // 버튼 사이 간격
+
+		button {
+			background: none;
+			border: none;
+			padding: 8px 0; // 위아래 패딩
+			cursor: pointer;
+			color: #777;
+			text-align: center;
+			font-family: "Noto Sans KR";
+			font-size: 16px;
+			font-style: normal;
+			font-weight: 700;
+			line-height: normal;
+			letter-spacing: -0.32px;
+			// 선택된 탭 버튼 스타일
+
+			&.active {
+				font-weight: bold; // 볼드체
+				color: var(--gray-22, #444);
+			}
+		}
+	}
+}
+
+.content {
+	position: relative;
+	display: flex;
+	width: 100%;
+	height: 55dvh; // 컨텐츠 영역 높이
+	background: var(--gray-8, #F8F8FA);
+	flex-direction: column;
+}
+
+.characterContainer {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+
+	>img:not(.resetBtn, .addBagBtn, .heartBtn) {
+		position: absolute;
+		max-height: 95%;
+		max-width: 400px;
+		height: auto;
+		width: auto;
+	}
+}
+
+/* 아이템 정보 바 컨테이너 */
+.itemInfoBar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	margin-top: 14px;
+
+}
+
+/* 아이템 이름 */
+.itemName {
+	display: flex;
+	width: 100px;
+	height: 24px;
+	padding: 6px 16px;
+	margin-left: 14px;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	flex-shrink: 0;
+	border-radius: 100px;
+	background: #FFF;
+	box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+
+	p {
+		position: relative;
+		width: 100%;
+		white-space: nowrap;
+		overflow: hidden;
+		color: var(--gray-22, #444);
+		text-align: center;
+		text-overflow: ellipsis;
+		font-family: Pretendard;
+		font-size: 14px;
+		font-style: normal;
+		font-weight: 600;
+		line-height: normal;
+		text-overflow: ellipsis;
+	}
+}
+
+/* 재화 */
+.itemAssets {
+	display: flex;
+	width: 100px;
+	height: 24px;
+	padding: 6px 16px;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	flex-shrink: 0;
+	border-radius: 100px;
+	background: #FFF;
+	margin-right: 14px;
+	box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+/* 개별 재화/좋아요 아이템 */
+.asset {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 11.37px;
+
+	img {
+		width: 16px; // 아이콘 크기
+		height: 16px;
+	}
+
+	span {
+		color: #000;
+
+		text-align: center;
+		font-family: Pretendard;
+		font-size: 13px;
+		font-style: normal;
+		font-weight: 600;
+		line-height: normal;
+		letter-spacing: -0.26px;
+	}
+}
+
+.characterSkin {
+	z-index: 1;
+}
+
+.characterEyes {
+	z-index: 2;
+}
+
+.characterNose {
+	z-index: 3;
+}
+
+.characterMouth {
+	z-index: 4;
+}
+
+.characterMole {
+	z-index: 5;
+}
+
+.characterHair {
+	z-index: 6;
+}
+
+.characterShoes {
+	z-index: 7;
+}
+
+.characterBottom {
+	z-index: 8;
+}
+
+.characterTop {
+	z-index: 9;
+}
+
+.characterSet {
+	z-index: 10;
+}
+
+.eyes_item {
+	z-index: 20;
+}
+
+.head {
+	z-index: 21;
+}
+
+.leftWrist,
+.rightWrist {
+	z-index: 22;
+}
+
+.leftHand,
+.rightHand {
+	z-index: 23;
+}
+
+.neck {
+	z-index: 24;
+}
+
+.ears {
+	z-index: 25;
+}
+
+.characterBackground {
+	position: absolute;
+	left: 50%;
+	top: 0%;
+	transform: translateX(-50%);
+	max-width: 100%;
+	max-height: 80%;
+	/* Adjusted for better fit */
+	flex-shrink: 0;
+	z-index: 1;
+}
+
+.categoryTab {
+	position: absolute;
+	border-radius: 100px;
+	background: #C0B9DB;
+	box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+	z-index: 30;
+	left: 0;
+	margin-left: 14px;
+	bottom: 14px;
+	display: flex;
+	height: 108px;
+	width: 32px;
+	flex-direction: column;
+	justify-content: center; // 수직 중앙 정렬
+	align-items: center; // 수평 중앙 정렬
+	gap: 14px;
+
+	button {
+		background: none;
+		border: none;
+		padding: 0;
+		cursor: pointer;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%; // 버튼 너비 채우기
+	}
+
+	img {
+		width: 17px;
+		height: auto; // 이미지 비율 유지
+	}
+
+}
+
+.buttonContainer {
+	position: absolute;
+	bottom: 14px;
+	display: flex;
+	justify-content: center;
+	gap: 14px; // 버튼 사이 간격
+	margin-right: 14px;
+	z-index: 30; // 버튼들이 캐릭터 위에 보이도록 z-index 설정
+	right: 0;
+
+	img {
+		width: 32px;
+		height: 32px;
+		cursor: pointer;
+	}
+}
