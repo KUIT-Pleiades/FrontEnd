@@ -32,8 +32,24 @@
 .searchContainer {
 	display: flex;
 	flex-grow: 1;
-  align-items: center;
-  position: relative;
+	align-items: center;
+	position: relative;
+
+	.cancel {
+		color: var(--Color-10, #444);
+		font-family: Pretendard;
+		font-size: 13px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+		letter-spacing: -0.26px;
+		cursor: pointer;
+		margin-left: 10px;
+		display: flex;
+		justify-content: flex-end;
+		word-break: keep-all;
+		;
+	}
 }
 
 .searchInput {
@@ -55,8 +71,8 @@
 }
 
 .searchIcon {
-  position: absolute;
-  left: 10px;
-  width: 20px;
-  height: 20px;
+	position: absolute;
+	left: 10px;
+	width: 20px;
+	height: 20px;
 }

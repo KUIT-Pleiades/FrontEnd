@@ -34,6 +34,7 @@ export default function OfficialUsedStore() {
   const [isCartModalOpen, setCartModalOpen] = useState(false);
   const [isCompleteCartModalOpen, setCompleteCartModalOpen] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
+  const [focusSearch, setFocusSearch] = useState(false); // 검색창 포커스 상태
 
   const { userInfo } = useCharacterStore();
   const IMG_BASE_URL: string = import.meta.env.VITE_PINATA_ENDPOINT;
@@ -61,8 +62,13 @@ export default function OfficialUsedStore() {
     type: "",
   });
 
-  const handleSearchToggle = () => {
+  const reverseSearch = () => {
     setIsSearching(!isSearching);
+    setFocusSearch(false);
+  };
+
+  const focusSearchInput = () => {
+    setFocusSearch(true);
   };
 
   const handleItemSelect = (
@@ -460,7 +466,9 @@ export default function OfficialUsedStore() {
         onItemSelect={handleItemSelect}
         likedItems={likedItems}
         isSearching={isSearching}
-        onSearchToggle={handleSearchToggle}
+        reverseSearch={reverseSearch}
+        isFocus={focusSearch}
+        setFocus={focusSearchInput}
       />
     </div>
   );

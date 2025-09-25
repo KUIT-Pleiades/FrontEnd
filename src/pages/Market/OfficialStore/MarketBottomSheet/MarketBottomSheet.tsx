@@ -3,13 +3,13 @@ import s from "./MarketBottomSheet.module.scss";
 import { CategoryType } from ".././OfficialUsedStore";
 import ThemeCategoryTabs from "./ThemeCategoryTabs";
 import SubCategoryTabs from "./SubCategoryTabs";
-import { mockFaceItems } from "./MockData/mockFaceItem";
-import { mockClothItems } from "./MockData/mockClothItem";
-import { mockBackgroundItems } from "./MockData/mockBackgroundItem";
-import stone from "../../../../assets/market/stone.svg";
-import heartBtn from "../../../../assets/Icon/redHeart.svg";
 
-const IMG_BASE_URL: string = import.meta.env.VITE_PINATA_ENDPOINT;
+import OfficialFaceItems from "./RenderItems/OfficialFaceItems";
+import OfficialClothItems from "./RenderItems/OfficialClothItems";
+import OfficialBackgroundItems from "./RenderItems/OfficialBackgroundItems";
+import FaceItems from "./RenderItems/FaceItems";
+import ClothItems from "./RenderItems/ClothItems";
+import BackgroundItems from "./RenderItems/BackgroundItems";
 
 interface MarketBottomSheetProps {
   activeTab: string;
@@ -24,7 +24,9 @@ interface MarketBottomSheetProps {
   ) => void;
   likedItems: Set<number>;
   isSearching?: boolean;
-  onSearchToggle?: () => void;
+  reverseSearch: () => void;
+  isFocus: boolean;
+  setFocus: () => void;
 }
 
 const MarketBottomSheet: React.FC<MarketBottomSheetProps> = ({
@@ -34,16 +36,14 @@ const MarketBottomSheet: React.FC<MarketBottomSheetProps> = ({
   onItemSelect,
   likedItems,
   isSearching = false,
-  onSearchToggle,
+  reverseSearch,
+  isFocus,
+  setFocus,
 }) => {
-  //const [isSearching, setIsSearching] = useState(false);
   const [activeTheme, setActiveTheme] = useState("추천");
   const [activeSubTab, setActiveSubTab] = useState("전체");
-  //const [searchQuery, setSearchQuery] = useState(""); // 검색어 상태
 
-  // activeCategory prop이 변경될 때마다 실행됩니다.
   useEffect(() => {
-    // 하위 탭 상태를 '전체'로 초기화합니다.
     setActiveSubTab("전체");
   }, [activeCategory]);
 
@@ -51,196 +51,73 @@ const MarketBottomSheet: React.FC<MarketBottomSheetProps> = ({
     if (activeTab === "official") {
       switch (activeCategory) {
         case "face":
-          return <div>공식몰 - 얼굴 아이템 목록</div>;
+          return (
+            <OfficialFaceItems
+              activeTheme={activeTheme}
+              activeSubTab={activeSubTab}
+              onItemSelect={onItemSelect}
+            />
+          );
         case "cloth":
-          return <div>공식몰 - 의상 아이템 목록</div>;
+          return (
+            <OfficialClothItems
+              activeTheme={activeTheme}
+              activeSubTab={activeSubTab}
+              onItemSelect={onItemSelect}
+            />
+          );
         case "background":
-          return <div>공식몰 - 배경 아이템 목록</div>;
+          return (
+            <OfficialBackgroundItems
+              activeTheme={activeTheme}
+              activeSubTab={activeSubTab}
+              onItemSelect={onItemSelect}
+            />
+          );
         default:
           return null;
       }
     } else if (activeTab === "used") {
+      // activeCategory 값에 따라 적절한 컴포넌트를 렌더링합니다.
+      // 필요한 props를 자식 컴포넌트로 전달해줍니다.
       switch (activeCategory) {
-        case "face": {
-          const typeMap: { [key: string]: string } = {
-            머리: "HAIR",
-            눈: "EYES",
-            코: "NOSE",
-            입: "MOUTH",
-            점: "MOLE",
-          };
-
-          const filteredItems = mockFaceItems.filter((item) => {
-            if (activeTheme === "좋아요") {
-              return likedItems.has(item.id);
-            }
-            const themeMatch =
-              activeTheme === "추천" || item.theme.includes(activeTheme);
-            const typeMatch =
-              activeSubTab === "전체" || item.type === typeMap[activeSubTab];
-            return themeMatch && typeMatch;
-          });
-
+        case "face":
           return (
-            <div className={s.gridItems}>
-              {filteredItems.map((item) => (
-                <div
-                  key={item.id}
-                  onClick={() =>
-                    onItemSelect(
-                      item.id,
-                      item.name,
-                      item.description,
-                      item.price,
-                      item.type
-                    )
-                  }
-                >
-                  <div className={s.item}>
-                    <img src={`${IMG_BASE_URL}${item.name}`} alt={item.name} />
-                    {likedItems.has(item.id) && (
-                      <div className={s.heartIconContainer}>
-                        <img src={heartBtn} alt="liked" />
-                      </div>
-                    )}
-                  </div>
-                  <div className={s.itemPrice}>
-                    <img src={stone} />
-                    {item.price}
-                  </div>
-                </div>
-              ))}
-            </div>
+            <FaceItems
+              activeTheme={activeTheme}
+              activeSubTab={activeSubTab}
+              likedItems={likedItems}
+              onItemSelect={onItemSelect}
+            />
           );
-        }
-        case "cloth": {
-          const accessoryTypes = [
-            "EARS",
-            "EYESITEM",
-            "HEAD",
-            "NECK",
-            "LEFTWRIST",
-            "RIGHTWRIST",
-            "LEFTHAND",
-            "RIGHTHAND",
-          ];
-          const typeMap: { [key: string]: string } = {
-            상의: "TOP",
-            하의: "BOTTOM",
-            세트: "SET",
-            신발: "SHOES",
-          };
-
-          const filteredItems = mockClothItems.filter((item) => {
-            if (activeTheme === "좋아요") {
-              return likedItems.has(item.id);
-            }
-            const themeMatch =
-              activeTheme === "추천" || item.theme.includes(activeTheme);
-
-            let typeMatch = false;
-            if (activeSubTab === "전체") {
-              typeMatch = true;
-            } else if (activeSubTab === "악세서리") {
-              // activeSubTab이 '악세서리'이면, item.type이 accessoryTypes 배열에 포함되는지 확인합니다.
-              typeMatch = accessoryTypes.includes(item.type);
-            } else {
-              typeMatch = item.type === typeMap[activeSubTab];
-            }
-
-            return themeMatch && typeMatch;
-          });
-
+        case "cloth":
           return (
-            <div className={s.gridItems}>
-              {filteredItems.map((item) => (
-                <div
-                  key={item.id}
-                  onClick={() =>
-                    onItemSelect(
-                      item.id,
-                      item.name,
-                      item.description,
-                      item.price,
-                      item.type
-                    )
-                  }
-                >
-                  <div className={s.item}>
-                    <img src={`${IMG_BASE_URL}${item.name}`} alt={item.name} />
-                    {likedItems.has(item.id) && (
-                      <div className={s.heartIconContainer}>
-                        <img src={heartBtn} alt="liked" />
-                      </div>
-                    )}
-                  </div>
-                  <div className={s.itemPrice}>
-                    <img src={stone} />
-                    {item.price}
-                  </div>
-                </div>
-              ))}
-            </div>
+            <ClothItems
+              activeTheme={activeTheme}
+              activeSubTab={activeSubTab}
+              likedItems={likedItems}
+              onItemSelect={onItemSelect}
+            />
           );
-        }
-        case "background": {
-          const typeMap: { [key: string]: string } = {
-            별: "STARBACKGROUND",
-            우주정거장: "STATIONBACKGROUND",
-          };
-
-          const filteredItems = mockBackgroundItems.filter((item) => {
-            if (activeTheme === "좋아요") {
-              return likedItems.has(item.id);
-            }
-            const themeMatch =
-              activeTheme === "추천" || item.theme.includes(activeTheme);
-            const typeMatch =
-              activeSubTab === "전체" || item.type === typeMap[activeSubTab];
-            return themeMatch && typeMatch;
-          });
-
+        case "background":
           return (
-            <div className={s.gridItems}>
-              {filteredItems.map((item) => (
-                <div
-                  key={item.id}
-                  onClick={() =>
-                    onItemSelect(
-                      item.id,
-                      item.name,
-                      item.description,
-                      item.price,
-                      item.type
-                    )
-                  }
-                >
-                  <div className={s.backgroundItem}>
-                    <img src={`${IMG_BASE_URL}${item.name}`} alt={item.name} />
-                    {likedItems.has(item.id) && (
-                      <div className={s.heartIconContainer}>
-                        <img src={heartBtn} alt="liked" />
-                      </div>
-                    )}
-                  </div>
-                  <div className={s.itemPrice}>
-                    <img src={stone} />
-                    {item.price}
-                  </div>
-                </div>
-              ))}
-            </div>
+            <BackgroundItems
+              activeTheme={activeTheme}
+              activeSubTab={activeSubTab}
+              likedItems={likedItems}
+              onItemSelect={onItemSelect}
+            />
           );
-        }
         default:
           return null;
       }
     }
   };
 
+  // JSX 구조는 거의 동일합니다.
   return (
     <div
-      className={`${s.sheetContainer} ${isSearching ? s.fullscreen : ""}`}
+      className={`${s.sheetContainer} ${isFocus ? s.fullscreen : ""}`}
       style={{ height: isCollapsed ? "2dvh" : "" }}
     >
       <div className={s.barContainer}>
@@ -250,16 +127,20 @@ const MarketBottomSheet: React.FC<MarketBottomSheetProps> = ({
         <>
           <div style={{ flexShrink: 0 }}>
             <ThemeCategoryTabs
-              onSearchToggle={onSearchToggle ? onSearchToggle : () => {}}
-              isSearching={isSearching}
+              reverseSearch={reverseSearch}
               activeTheme={activeTheme}
               onThemeChange={setActiveTheme}
+              isFocus={isFocus}
+              setFocus={setFocus}
             />
             <SubCategoryTabs
               activeCategory={activeCategory}
               isSearching={isSearching}
+              reverseSearch={reverseSearch}
               activeSubTab={activeSubTab}
               onSubTabChange={setActiveSubTab}
+              isFocus={isFocus}
+              setFocus={setFocus}
             />
           </div>
           {!isSearching && <div className={s.content}>{renderContent()}</div>}

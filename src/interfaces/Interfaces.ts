@@ -270,7 +270,11 @@ export interface Stations {
   stations: Station[];
 }
 
-export type SortOptionForStations = '새로운 활동순' | '최근 가입순' | '오래된 가입순' | '이름순';
+export type SortOptionForStations =
+  | "새로운 활동순"
+  | "최근 가입순"
+  | "오래된 가입순"
+  | "이름순";
 
 export interface StationMember {
   userId: string;
@@ -344,4 +348,34 @@ export interface StationResponse {
 export interface CreateStationResponse {
   stationId: string;
   message?: string;
+}
+
+// Interfaces For Market
+// 공식몰에서 판매하는 개별 아이템의 타입
+export interface OfficialItem {
+  id: number;
+  name: string;
+  description: string;
+  type: string;
+  price: number;
+  theme: string[];
+  created_at: string;
+}
+
+// '/store/official/face' API가 응답하는 전체 데이터의 타입
+export interface OfficialFaceData {
+  items: OfficialItem[];
+  wishlist: number[];
+}
+
+// '/store/official/cloth' API가 응답하는 전체 데이터의 타입
+export interface OfficialClothData {
+  items: OfficialItem[];
+  wishlist: number[];
+}
+
+// '/store/official/background' API가 응답하는 전체 데이터의 타입
+export interface OfficialBackgroundData {
+  items: OfficialItem[];
+  wishlist: number[];
 }
